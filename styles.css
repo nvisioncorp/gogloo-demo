@@ -98,26 +98,20 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
-    height: 36px;
-    margin-left: 107px;
+    height: 42px; /* Aligné sur .search-container */
+    background-color: #e0e0e0; /* Gris clair */
     color: #787575;
     font-size: 12px;
     font-weight: 300;
     opacity: 0.8;
     position: absolute;
-    right: 52px;
+    right: 42px; /* Aligné avec le bord gauche de .search-btn (42px de largeur) */
+    padding: 0 10px; /* Padding interne */
     font-family: 'Inter', sans-serif;
 }
 
-.separator {
-    height: 32px;
-    line-height: 32px;
-    margin-bottom: 5px;
-}
-
 .category-label {
-    margin-right: 0px;
+    margin-right: 4px; /* Espacement entre texte et icône */
 }
 
 .arrow-icon {
@@ -125,6 +119,16 @@ header {
     height: 16px;
     opacity: 0.8;
 }
+
+/* Supprimer les styles inutiles de .separator et .category-container */
+.separator {
+    display: none;
+}
+
+.category-container {
+    display: none;
+}
+
 
 .search-btn {
     width: 42px;
@@ -210,6 +214,7 @@ header {
 }
 
 /* Ajustement de la section Hero */
+
 .hero {
     position: relative;
     text-align: center;
@@ -231,13 +236,14 @@ header {
 
 .hero-text {
     position: absolute;
-    top: calc(50% - 25px); /* Ajusté pour padding de 50px */
+    top: calc(50% - 25px); /* Ajusté pour compenser le padding de 50px */
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
     padding: 50px;
+    min-width: 600px; /* Largeur minimale pour garder le sous-titre sur une ligne */
 }
 
 .hero-text h1 {
@@ -251,6 +257,7 @@ header {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
     margin: 0 0 20px;
+    white-space: nowrap; /* Force le texte sur une seule ligne */
 }
 
 .hero-btn {
@@ -264,7 +271,7 @@ header {
     font-family: 'Inter', sans-serif;
 }
 
-/* Ajout du gradient linéaire */
+/* Ajustement du gradient linéaire */
 .hero::before {
     content: '';
     position: absolute;
@@ -280,30 +287,293 @@ header {
     z-index: 2;
 }
 
-/* Ajustement de la section Features */
+
 .features {
     display: flex;
     justify-content: space-around;
-    padding: 30px; /* Augmenté à 30px */
+    padding: 30px;
     background-color: #fff;
     border-top: 1px solid #ddd;
 }
 
 .feature-item {
-    text-align: center;
+    text-align: center; /* Centre le texte et les éléments en ligne */
     width: 20%;
+    display: flex; /* Utilise flex pour centrer verticalement et horizontalement */
+    flex-direction: column; /* Empile l'icône et le texte verticalement */
+    align-items: center; /* Centre les éléments horizontalement dans .feature-item */
 }
 
 .feature-icon {
-    width: 32px; /* Conservé à 32px */
-    height: 32px; /* Conservé à 32px */
-    margin-bottom: 0; /* Espacement supprimé */
-    fill: "currentColor"; /* Changé à #003D8F */
+    width: 32px;
+    height: 32px;
+    margin-bottom: 20px;
+    display: block; /* Assure que l'image est un bloc pour éviter les décalages */
+    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102%); /* Votre filtre fonctionnel */
 }
 
 .feature-item p {
-    font-size: 12px; /* Conservé à 12px */
+    font-size: 12px;
     color: #1A1A1A;
-    font-weight: 300; /* Light */
+    font-weight: 300;
     font-family: 'Inter', sans-serif;
+    margin: 0; /* Supprime toute marge indésirable */
+}
+
+/* Section Catégories */
+.categories {
+    padding: 30px;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.categories {
+    background-color: rgba(0, 61, 143, 0.1); /* #003D8F à 10% d'opacité */
+    padding: 70px 0 30px; /* 70px top pour le titre, ajusté ci-dessous */
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.categories-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500; /* Medium */
+    font-size: 40px;
+    color: #003D8F;
+    text-align: center;
+    margin-bottom: 55px; /* Espacement de 55px avant le conteneur */
+}
+
+.categories-container {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px; /* Espacement de 40px pour les flèches */
+    margin-bottom: 80px; /* Espacement de 80px en bas */
+}
+
+.category-list {
+    display: flex;
+    gap: 20px; /* Espacement de 20px entre les cercles */
+    overflow-x: auto; /* Permet de scroller si 6 items ne tiennent pas */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll sur mobile */
+}
+
+.category-item {
+    text-align: center;
+    width: 174px; /* Cercle de 174x174px */
+    height: 174px;
+    border: 2px solid #003D8F; /* Contour */
+    background-color: #F5F5F5; /* Fond */
+    border-radius: 50%; /* Cercle */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.feature-icon {
+    width: 32px; /* Ajusté à la taille de .features */
+    height: 32px;
+    margin-bottom: 0;
+    display: block;
+    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102%); /* Filtre pour #003D8F */
+}
+
+.category-name {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Regular */
+    font-size: 16px; /* Réduit à 16px */
+    color: #1A1A1A;
+    margin-top: 15px; /* Espacement de 15px entre icône et texte */
+}
+
+.category-arrow {
+    width: 23px;
+    height: 12px;
+    cursor: pointer;
+    fill: #003D8F; /* Couleur des flèches */
+}
+
+/* Section Produits (déjà proposé, repris ici) */
+.products {
+    padding: 30px;
+    background-color: #f9f9f9;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.products-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #003D8F;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-item {
+    text-align: center;
+    width: 30%;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.product-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1A1A1A;
+    margin: 10px 0;
+}
+
+.product-price {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #FF6B00;
+    font-weight: 300;
+    margin: 0;
+}
+
+/* Section Témoignages */
+.testimonials {
+    padding: 30px;
+    background-color: #fff;
+    margin: 0 auto;
+    max-width: 1440px;
+}
+
+.testimonials-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #003D8F;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.testimonial-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.testimonial-item {
+    width: 48%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #1A1A1A;
+    font-weight: 300;
+    margin-bottom: 10px;
+    quotes: "“" "”";
+}
+
+.testimonial-text::before {
+    content: open-quote;
+}
+
+.testimonial-text::after {
+    content: close-quote;
+}
+
+.testimonial-author {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #666;
+    font-style: italic;
+    text-align: right;
+}
+
+/* Footer */
+footer {
+    background-color: #003D8F;
+    color: white;
+    padding: 30px 0;
+    margin-top: 30px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-section {
+    width: 30%;
+}
+
+.footer-section h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 5px 0;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section ul li a:hover {
+    text-decoration: underline;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+.footer-copyright {
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    margin-top: 20px;
 }

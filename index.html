@@ -7,48 +7,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@300;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<header>
-    <div class="logo">
-        <span class="logo-white">Gog</span><span class="logo-orange">loo</span>
-    </div>
-    <div class="location-feature">
-        <img src="assets/location-icon.svg" alt="Localisation" width="32" height="32" class="location-icon">
-        <div class="location-text">
-            <span class="position-label">Votre position</span>
-            <span class="position-country">Bénin</span>
+    <header>
+        <div class="logo">
+            <span class="logo-white">Gog</span><span class="logo-orange">loo</span>
         </div>
-    </div>
-    <div class="search-container">
-        <input type="text" placeholder="Recherchez un produit..." class="search-input">
-        <div class="category-filter">
-            <span class="separator">|</span>
-            <span class="category-label">Catégorie</span>
-            <img src="assets/arrow-icon.svg" alt="Flèche" width="16" height="16" class="arrow-icon">
+        <div class="location-feature">
+            <img src="assets/location-icon.svg" alt="Localisation" width="32" height="32" class="location-icon">
+            <div class="location-text">
+                <span class="position-label">Votre position</span>
+                <span class="position-country">Bénin</span>
+            </div>
         </div>
-        <button class="search-btn">
-            <img src="assets/search-icon.svg" alt="Rechercher" width="24" height="24">
-        </button>
-    </div>
-    <div class="header-right">
-        <div class="language-container">
-            <img src="assets/globe-icon.svg" alt="Langue" width="28" height="28" class="language-icon">
-            <span class="language-text">Français</span>
+        <div class="search-container">
+            <input type="text" placeholder="Recherchez un produit..." class="search-input">
+            <div class="category-filter">
+                <span class="category-label">Catégorie</span>
+                <img src="assets/arrow-icon.svg" alt="Flèche" width="16" height="16" class="arrow-icon">
+            </div>
+            <button class="search-btn">
+                <img src="assets/search-icon.svg" alt="Rechercher" width="24" height="24">
+            </button>
         </div>
-        <div class="help-container">
-            <img src="assets/help-icon.svg" alt="Aide" width="28" height="28" class="help-icon">
-            <span class="help-text">Aide</span>
+        <div class="header-right">
+            <div class="language-container">
+                <img src="assets/globe-icon.svg" alt="Langue" width="28" height="28" class="language-icon">
+                <span class="language-text">Français</span>
+            </div>
+            <div class="help-container">
+                <img src="assets/help-icon.svg" alt="Aide" width="28" height="28" class="help-icon">
+                <span class="help-text">Aide</span>
+            </div>
+            <div class="account-container">
+                <img src="assets/account-icon.svg" alt="Compte" width="28" height="28" class="account-icon">
+                <span class="account-text">Compte</span>
+            </div>
+            <div class="cart-container">
+                <img src="assets/cart-icon.svg" alt="Panier" width="28" height="28" class="cart-icon">
+                <div class="notification">0</div>
+            </div>
         </div>
-        <div class="account-container">
-            <img src="assets/account-icon.svg" alt="Compte" width="28" height="28" class="account-icon">
-            <span class="account-text">Compte</span>
-        </div>
-        <div class="cart-container">
-            <img src="assets/cart-icon.svg" alt="Panier" width="28" height="28" class="cart-icon">
-            <div class="notification">0</div>
-        </div>
-    </div>
-</header>
+    </header>
 
     <div class="promo-banner">
         -15% sur les cosmétiques cette semaine | Livraisons gratuites dès 30 000 FCFA
@@ -65,23 +65,120 @@
 
     <section class="features">
         <div class="feature-item">
-            <img src="assets/livraison-rapide.svg" alt="Livraison rapide" class="feature-icon" style="fill: #003D8F;">
+            <img src="assets/delivery-icon.svg" alt="Livraison locale rapide" class="feature-icon" />
             <p>Livraison locale rapide</p>
         </div>
         <div class="feature-item">
-            <img src="assets/paiement-securise.svg" alt="Paiement sécurisé" class="feature-icon">
+            <img src="assets/payment-icon.svg" alt="Paiement mobile sécurisé" class="feature-icon" />
             <p>Paiement mobile sécurisé</p>
         </div>
         <div class="feature-item">
-            <img src="assets/stock-verifie.svg" alt="Stock vérifié" class="feature-icon">
+            <img src="assets/stock-icon.svg" alt="Stock réel et vérifié" class="feature-icon" />
             <p>Stock réel et vérifié</p>
         </div>
         <div class="feature-item">
-            <img src="assets/sav-humain.svg" alt="SAV humain" class="feature-icon">
+            <img src="assets/support-icon.svg" alt="SAV humain et réactif" class="feature-icon" />
             <p>SAV humain et réactif</p>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <section class="categories">
+        <h2 class="categories-title">Explorez par catégorie</h2>
+        <div class="categories-container">
+            <img src="assets/arrow-left.svg" alt="Précédent" class="category-arrow" />
+            <div class="category-list">
+                <div class="category-item">
+                    <img src="assets/icon-mode.svg" alt="Mode" class="category-icon feature-icon" />
+                    <p class="category-name">Mode</p>
+                </div>
+                <div class="category-item">
+                    <img src="assets/icon-high-tech.svg" alt="High-Tech & Informatique" class="category-icon feature-icon" />
+                    <p class="category-name">High-Tech & Informatique</p>
+                </div>
+                <div class="category-item">
+                    <img src="assets/icon-immobilier.svg" alt="Immobilier" class="category-icon feature-icon" />
+                    <p class="category-name">Immobilier</p>
+                </div>
+                <div class="category-item">
+                    <img src="assets/icon-beaute.svg" alt="Beauté" class="category-icon feature-icon" />
+                    <p class="category-name">Beauté</p>
+                </div>
+                <div class="category-item">
+                    <img src="assets/icon-billetterie.svg" alt="Billetterie" class="category-icon feature-icon" />
+                    <p class="category-name">Billetterie</p>
+                </div>
+                <div class="category-item">
+                    <img src="assets/icon-auto-moto.svg" alt="Auto & Moto" class="category-icon feature-icon" />
+                    <p class="category-name">Auto & Moto</p>
+                </div>
+            </div>
+            <img src="assets/arrow-right.svg" alt="Suivant" class="category-arrow" />
+        </div>
+    </section>
+
+    <section class="products">
+        <h2 class="products-title">Nos Produits Populaires</h2>
+        <div class="product-list">
+            <div class="product-item">
+                <img src="assets/product1.jpg" alt="Produit 1" class="product-image" />
+                <h3 class="product-name">Crème Hydratante</h3>
+                <p class="product-price">15 000 FCFA</p>
+            </div>
+            <div class="product-item">
+                <img src="assets/product2.jpg" alt="Produit 2" class="product-image" />
+                <h3 class="product-name">Shampooing Naturel</h3>
+                <p class="product-price">10 000 FCFA</p>
+            </div>
+            <div class="product-item">
+                <img src="assets/product3.jpg" alt="Produit 3" class="product-image" />
+                <h3 class="product-name">Savon Artisanal</h3>
+                <p class="product-price">5 000 FCFA</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="testimonials-title">Ce que nos clients disent</h2>
+        <div class="testimonial-list">
+            <div class="testimonial-item">
+                <p class="testimonial-text">"Livraison rapide et produits de qualité !"</p>
+                <p class="testimonial-author">- Aïcha D., Cotonou</p>
+            </div>
+            <div class="testimonial-item">
+                <p class="testimonial-text">"Paiement facile et SAV au top !"</p>
+                <p class="testimonial-author">- Koffi M., Porto-Novo</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contactez-nous</h3>
+                <p>Email: support@gogloo.com</p>
+                <p>Tél: +229 123 456 789</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Utiles</h3>
+                <ul>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Suivez-nous</h3>
+                <div class="social-links">
+                    <a href="#"><img src="assets/facebook-icon.svg" alt="Facebook" class="social-icon"></a>
+                    <a href="#"><img src="assets/twitter-icon.svg" alt="Twitter" class="social-icon"></a>
+                    <a href="#"><img src="assets/instagram-icon.svg" alt="Instagram" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-copyright">© 2025 Gogloo. Tous droits réservés.</p>
+    </footer>
+
+
 </body>
+
 </html>
