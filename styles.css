@@ -410,6 +410,86 @@ header {
     filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102) opacity(0.7); /* #003D8F à 70% */
 }
 
+
+/* Section Tendances actuelles */
+.trends {
+    width: 100%;
+    background-color: #fff;
+    margin: 0;
+    padding: 70px 0; /* Espacement général similaire à categories */
+}
+
+.trends-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #003D8F;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.trends-container {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacement de 20px entre cartes */
+}
+
+.trend-card {
+    width: 25%; /* 4 colonnes sur desktop */
+    aspect-ratio: 4 / 3; /* Ratio 4:3 */
+    position: relative;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.trend-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trend-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    padding: 10px;
+    border-radius: 0 0 12px 12px;
+}
+
+.trend-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    max-height: 2.4em; /* Limite à 2 lignes */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.trend-card:hover .trend-image {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
 /* Section Produits (déjà proposé, repris ici) */
 .products {
     padding: 30px;
