@@ -288,28 +288,46 @@ header {
 }
 
 
+/* Section Features */
 .features {
-    display: flex;
-    justify-content: space-around;
-    padding: 30px;
+    width: 100%; /* Occupie la largeur totale de l'écran */
     background-color: #fff;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #ddd; /* Conserver si voulu */
+    margin: 0; /* Coller à .hero */
+}
+
+.features-container {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto; /* Centré */
+    /* Pas de margin-bottom pour coller à .categories */
+}
+
+.feature-items {
+    width: 70%; /* 70% de la largeur */
+    margin: 0 auto; /* Centre parfaitement */
+    display: flex;
+    justify-content: space-between;
+    gap: 20px; /* Espacement fixe de 20px */
+    padding: 0;
 }
 
 .feature-item {
-    text-align: center; /* Centre le texte et les éléments en ligne */
-    width: 20%;
-    display: flex; /* Utilise flex pour centrer verticalement et horizontalement */
-    flex-direction: column; /* Empile l'icône et le texte verticalement */
-    align-items: center; /* Centre les éléments horizontalement dans .feature-item */
+    text-align: center;
+    flex: 1;
+    min-width: 0;
+    padding: 35px 0; /* 35px en haut et en bas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .feature-icon {
     width: 32px;
     height: 32px;
-    margin-bottom: 20px;
-    display: block; /* Assure que l'image est un bloc pour éviter les décalages */
-    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102%); /* Votre filtre fonctionnel */
+    margin-bottom: 20px !important; /* Espacement icône-texte */
+    display: block;
+    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102); /* Filtre pour #003D8F */
 }
 
 .feature-item p {
@@ -317,54 +335,47 @@ header {
     color: #1A1A1A;
     font-weight: 300;
     font-family: 'Inter', sans-serif;
-    margin: 0; /* Supprime toute marge indésirable */
+    margin: 0;
 }
 
-/* Section Catégories */
+/* Section Categories */
 .categories {
-    padding: 30px;
-    background-color: #fff;
-    margin: 0 auto;
-    max-width: 1440px;
-}
-
-.categories {
-    background-color: rgba(0, 61, 143, 0.1); /* #003D8F à 10% d'opacité */
-    padding: 70px 0 30px; /* 70px top pour le titre, ajusté ci-dessous */
-    margin: 0 auto;
-    max-width: 1440px;
+    width: 100%; /* Occupie 100% de la largeur */
+    background-color: rgba(0, 61, 143, 0.1); /* Bleu à 10% sur tout le conteneur */
+    margin: 0; /* Coller à .features */
+    padding-top: 70px; /* Place le titre à 70px du haut */
+    padding-bottom: 80px; /* Ajoute 80px en bas à l'intérieur du conteneur */
 }
 
 .categories-title {
     font-family: 'Poppins', sans-serif;
-    font-weight: 500; /* Medium */
-    font-size: 40px;
+    font-weight: 700; /* Bold */
+    font-size: 28px; /* Réduit à 28px */
     color: #003D8F;
     text-align: center;
-    margin-bottom: 55px; /* Espacement de 55px avant le conteneur */
+    margin: 0; /* Supprime toute marge */
 }
 
 .categories-container {
-    width: 1200px;
-    margin: 0 auto;
+    width: 80%; /* 80% de la largeur */
+    margin: 55px auto 0; /* 55px après le titre, supprime margin-bottom */
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 40px; /* Espacement de 40px pour les flèches */
-    margin-bottom: 80px; /* Espacement de 80px en bas */
+    padding: 0 30px; /* Réduit à 30px de chaque côté */
 }
 
 .category-list {
     display: flex;
     gap: 20px; /* Espacement de 20px entre les cercles */
-    overflow-x: auto; /* Permet de scroller si 6 items ne tiennent pas */
-    -webkit-overflow-scrolling: touch; /* Smooth scroll sur mobile */
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .category-item {
     text-align: center;
-    width: 174px; /* Cercle de 174x174px */
-    height: 174px;
+    width: 120px; /* Conserver 120x120px */
+    height: 120px; /* Conserver 120x120px */
     border: 2px solid #003D8F; /* Contour */
     background-color: #F5F5F5; /* Fond */
     border-radius: 50%; /* Cercle */
@@ -375,27 +386,29 @@ header {
 }
 
 
+
 .feature-icon {
-    width: 32px; /* Ajusté à la taille de .features */
+    width: 32px;
     height: 32px;
     margin-bottom: 0;
     display: block;
-    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102%); /* Filtre pour #003D8F */
+    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102); /* Filtre pour #003D8F */
+    margin-bottom: 10px; /* Réduit à 10px pour les catégories aussi */
 }
 
 .category-name {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 400; /* Regular */
-    font-size: 16px; /* Réduit à 16px */
+    font-size: 12px;
     color: #1A1A1A;
-    margin-top: 15px; /* Espacement de 15px entre icône et texte */
+    margin-top: 5px; /* Ajusté pour la taille */
 }
 
 .category-arrow {
     width: 23px;
     height: 12px;
     cursor: pointer;
-    fill: #003D8F; /* Couleur des flèches */
+    filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102) opacity(0.7);
 }
 
 /* Section Produits (déjà proposé, repris ici) */
@@ -576,4 +589,29 @@ footer {
     font-family: 'Inter', sans-serif;
     font-size: 12px;
     margin-top: 20px;
+}
+
+
+
+
+/* Préparation pour la responsivité (à affiner plus tard) */
+@media (max-width: 1024px) {
+    .feature-items {
+        width: 80%; /* Augmente à 80% sur tablettes */
+    }
+
+    .feature-item {
+        width: 45%; /* Deux items par ligne */
+    }
+}
+
+@media (max-width: 768px) {
+    .feature-items {
+        width: 90%; /* Plein écran sur mobile */
+        flex-direction: column; /* Empile verticalement */
+    }
+
+    .feature-item {
+        width: 100%; /* Un item par ligne */
+    }
 }
