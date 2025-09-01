@@ -415,8 +415,9 @@ header {
 .trends {
     width: 100%;
     background-color: #fff;
-    margin: 0;
-    padding: 70px 0; /* Espacement général similaire à categories */
+    margin: 0; /* Pas d'espacement avec .categories */
+    padding-top: 70px; /* Padding supérieur */
+    padding-bottom: 80px; /* Padding inférieur */
 }
 
 .trends-title {
@@ -425,27 +426,34 @@ header {
     font-size: 28px;
     color: #003D8F;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 55px; /* 55px avant trends-container */
 }
 
 .trends-container {
-    width: 80%;
+    width: 80%; /* 80% de la largeur de l'écran */
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 auto; /* Centré */
     display: flex;
     flex-wrap: wrap;
     gap: 20px; /* Espacement de 20px entre cartes */
+    justify-content: center; /* Centrage horizontal des cartes */
+    box-sizing: border-box; /* Inclut padding dans la largeur */
 }
 
 .trend-card {
-    width: 25%; /* 4 colonnes sur desktop */
-    aspect-ratio: 4 / 3; /* Ratio 4:3 */
+    width: 246px; /* Taille fixe 246px */
+    height: 326px; /* Taille fixe 326px */
     position: relative;
     display: block;
     text-decoration: none;
     cursor: pointer;
-    border-radius: 12px;
     overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid;
+    border-image: linear-gradient(to top, #003D8F, #FF6B00) 1; /* Contour dégradé */
+    border-image-slice: 1; /* Coupe le dégradé pour les coins */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Assure les coins arrondis */
+    mask-image: radial-gradient(white, black); /* Compatibilité moderne */
 }
 
 .trend-image {
@@ -456,20 +464,39 @@ header {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.trend-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px; /* Taille fixée */
+    height: 41px; /* Taille fixée */
+    filter: invert(66%) sepia(41%) saturate(2000%) hue-rotate(2deg) brightness(103%) contrast(101%); /* #FF6B00 */
+    z-index: 1;
+    animation: float 2s ease-in-out infinite; /* Animation de flottement */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
 .trend-overlay {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(255, 107, 0, 0.1) 0%, rgba(0, 61, 143, 0.7) 100%); /* Orange 10% à bleu 70% */
+    display: flex;
+    align-items: flex-end;
     padding: 10px;
-    border-radius: 0 0 12px 12px;
+    border-radius: 12px;
 }
 
 .trend-title {
     font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 400; /* Regular */
+    font-size: 16px;
     color: #fff;
     text-align: center;
     margin: 0;
@@ -479,6 +506,7 @@ header {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
 }
 
