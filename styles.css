@@ -518,32 +518,46 @@ header {
 
 
 
-
 /* Section Produits recommandés */
 .recommended-products {
     width: 100%;
-    background-color: #fff;
-    padding: 32px 0 24px; /* Marges verticales */
+    background-color: #F5F5F5;
+    margin: 0; /* Collé au conteneur .categories */
+    padding-top: 70px; /* 70px du bord supérieur */
+    padding-bottom: 80px; /* Padding inférieur */
 }
 
 .recommended-title {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 24px;
-    color: #111827;
+    color: #003D8F; /* Couleur bleue */
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 55px; /* 55px avant .filters */
 }
 
 .filters {
     width: 80%;
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 auto 55px; /* 55px avant .products-grid */
     display: flex;
     gap: 8px;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 16px;
+    align-items: center;
+}
+
+.filter-arrow {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 200ms ease;
+}
+
+.filter-arrow:hover {
+    opacity: 1;
 }
 
 .filter-pill {
@@ -568,7 +582,7 @@ header {
 .products-grid {
     width: 80%;
     max-width: 1440px;
-    margin: 0 auto;
+    margin: 0 auto 55px; /* 55px avant .load-more */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
@@ -614,8 +628,8 @@ header {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* Fallback pour WebKit */
-    line-clamp: 2; /* Propriété standard */
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     max-height: 2.4em;
 }
@@ -675,7 +689,7 @@ header {
 
 .load-more {
     display: block;
-    margin: 24px auto 0;
+    margin: 0 auto;
     padding: 12px 24px;
     background-color: #FF7A00;
     color: #fff;
@@ -696,6 +710,7 @@ header {
     transform: translateY(-4px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
+
 
 /* Section Témoignages */
 .testimonials {
