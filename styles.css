@@ -519,60 +519,182 @@ header {
 
 
 
-/* Section Produits (déjà proposé, repris ici) */
-.products {
-    padding: 30px;
-    background-color: #f9f9f9;
-    margin: 0 auto;
-    max-width: 1440px;
-}
-
-.products-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #003D8F;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.product-list {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.product-item {
-    text-align: center;
-    width: 30%;
+/* Section Produits recommandés */
+.recommended-products {
+    width: 100%;
     background-color: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 32px 0 24px; /* Marges verticales */
+}
+
+.recommended-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.filters {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 16px;
+}
+
+.filter-pill {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    background-color: #F5F7FA;
+    color: #1E5AA7;
+    border: none;
+    cursor: pointer;
+    transition: background-color 200ms ease, color 200ms ease;
+    white-space: nowrap;
+}
+
+.filter-pill.active {
+    background-color: #FF7A00;
+    color: #fff;
+}
+
+.products-grid {
+    width: 80%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.product-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    background-color: #FF7A00;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
 }
 
 .product-image {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 12px 12px 0 0;
 }
 
-.product-name {
+.product-title {
     font-family: 'Inter', sans-serif;
     font-size: 16px;
-    font-weight: 500;
-    color: #1A1A1A;
-    margin: 10px 0;
+    color: #111827;
+    margin: 8px 0 0;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Fallback pour WebKit */
+    line-clamp: 2; /* Propriété standard */
+    -webkit-box-orient: vertical;
+    max-height: 2.4em;
 }
 
 .product-price {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.old-price {
     font-family: 'Inter', sans-serif;
     font-size: 14px;
-    color: #FF6B00;
-    font-weight: 300;
-    margin: 0;
+    color: #6B7280;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.current-price {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #111827;
+}
+
+.product-rating {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 8px;
+}
+
+.product-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #6B7280;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.product-button {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    padding: 6px 12px;
+    background-color: #FF7A00;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background-color 200ms ease;
+}
+
+.product-button:hover {
+    background-color: #E86A00;
+}
+
+.load-more {
+    display: block;
+    margin: 24px auto 0;
+    padding: 12px 24px;
+    background-color: #FF7A00;
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.load-more:hover {
+    background-color: #E86A00;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3);
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 /* Section Témoignages */
@@ -746,13 +868,18 @@ footer {
     }
 }
 
-/* Section suivante (exemple) */
-.products {
-    margin-top: 0; /* Supprime l'espacement avec .categories */
+/* Responsivité */
+@media (max-width: 1024px) {
+    .trend-card {
+        flex: 0 0 calc(50% - 10px); /* 2 cartes sur tablette */
+    }
 }
 
-.products-container {
-    width: 80%;
-    margin: 0 auto;
-    /* Autres styles */
+@media (max-width: 768px) {
+    .trend-card {
+        flex: 0 0 100%; /* 1 carte par ligne sur mobile */
+    }
+    .trends {
+        padding: 40px 0; /* Ajustement padding mobile */
+    }
 }
