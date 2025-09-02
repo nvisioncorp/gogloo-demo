@@ -410,8 +410,8 @@ header {
     filter: invert(14%) sepia(94%) saturate(2312%) hue-rotate(205deg) brightness(96%) contrast(102) opacity(0.7); /* #003D8F à 70% */
 }
 
-
 /* Section Tendances actuelles */
+
 .trends {
     width: 100%;
     background-color: #fff;
@@ -430,18 +430,19 @@ header {
 }
 
 .trends-container {
-    width: 80%; /* 80% de la largeur de l'écran */
+    width: 80%;
     max-width: 1440px;
-    margin: 0 auto; /* Centré */
+    margin: 0 auto; /* Centrage sans marges latérales */
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Force 4 cartes sur une ligne */
     gap: 20px; /* Espacement de 20px entre cartes */
-    justify-content: center; /* Centrage horizontal des cartes */
+    justify-content: space-between; /* Alignement avec espacement égal */
     box-sizing: border-box; /* Inclut padding dans la largeur */
+    padding: 0; /* Supprime toute padding latéral */
 }
 
 .trend-card {
-    width: 246px; /* Taille fixe 246px */
+    flex: 0 0 calc(25% - 15px); /* 4 cartes sur une ligne avec gap 20px */
     height: 326px; /* Taille fixe 326px */
     position: relative;
     display: block;
@@ -449,11 +450,6 @@ header {
     cursor: pointer;
     overflow: hidden;
     border-radius: 12px;
-    border: 2px solid;
-    border-image: linear-gradient(to top, #003D8F, #FF6B00) 1; /* Contour dégradé */
-    border-image-slice: 1; /* Coupe le dégradé pour les coins */
-    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Assure les coins arrondis */
-    mask-image: radial-gradient(white, black); /* Compatibilité moderne */
 }
 
 .trend-image {
@@ -471,7 +467,7 @@ header {
     width: 32px; /* Taille fixée */
     height: 41px; /* Taille fixée */
     filter: invert(66%) sepia(41%) saturate(2000%) hue-rotate(2deg) brightness(103%) contrast(101%); /* #FF6B00 */
-    z-index: 1;
+    z-index: 2; /* Au-dessus de l'overlay */
     animation: float 2s ease-in-out infinite; /* Animation de flottement */
 }
 
@@ -489,8 +485,13 @@ header {
     background: linear-gradient(to bottom, rgba(255, 107, 0, 0.1) 0%, rgba(0, 61, 143, 0.7) 100%); /* Orange 10% à bleu 70% */
     display: flex;
     align-items: flex-end;
-    padding: 10px;
+    padding: 20px; /* Positionne le texte à 20px du bord inférieur */
     border-radius: 12px;
+    overflow: hidden;
+    border: 4px solid; /* Bordure de base */
+    border-image: linear-gradient(to top, #003D8F, #FF6B00) 1; /* Dégradé linéaire */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Assure les coins arrondis */
+    mask-image: radial-gradient(white, black); /* Compatibilité moderne */
 }
 
 .trend-title {
