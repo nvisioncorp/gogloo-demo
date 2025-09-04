@@ -67,3 +67,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update on scroll
     filtersContainer.addEventListener('scroll', updateArrowVisibility);
 });
+
+/* JavaScript pour basculer l'état de l'icône cœur (à ajouter dans script.js) */
+document.addEventListener('DOMContentLoaded', () => {
+    const favoriteIcons = document.querySelectorAll('.favorite-icon');
+    favoriteIcons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            icon.classList.toggle('active');
+        });
+    });
+    // ... (reste du code existant pour filters)
+});

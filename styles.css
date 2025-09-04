@@ -613,17 +613,17 @@ header {
 .products-grid {
     width: 80%; /* 80% de la largeur */
     max-width: 1440px;
-    margin: 0 auto 55px; /* 55px avant .load-more */
+    margin: 0 auto 55px; /* 55px pour séparer du bouton */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 20px;
 }
 
 .product-card {
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    padding: 0;
+    background-color: #FFFFFF;
+    border-radius: 14px; /* 12-16px */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    padding: 16px 16px 20px; /* 16px gauche/droite/haut, 30px bas */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -632,38 +632,53 @@ header {
 
 .image-zone {
     position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 100%; /* Ajusté pour respecter 80% du conteneur */
+    height: 0;
+    padding-top: 100%; /* Ratio 1:1 pour 250x250px dans un conteneur flexible */
     overflow: hidden;
+    margin-bottom: 12px;
 }
 
 .product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 12px 12px 0 0;
+    border-radius: 9px; /* 8-10px */
 }
 
 .favorite-icon {
     position: absolute;
     top: 8px;
     right: 8px;
-    width: 24px;
-    height: 24px;
+    width: 18px; /* Réduit à 18px */
+    height: 18px; /* Réduit à 18px */
     cursor: pointer;
+    background: url('assets/heart-icon.svg') no-repeat center; /* Icône SVG */
+    filter: brightness(0) saturate(100%) hue-rotate(30deg); /* Ajuste à orange */
     opacity: 0.7;
-    transition: opacity 200ms ease;
+    transition: opacity 200ms ease, filter 200ms ease, background-color 200ms ease;
 }
 
 .favorite-icon:hover {
     opacity: 1;
 }
 
+.favorite-icon.active {
+    background-color: rgba(255, 107, 0, 0.7); /* Fond orange opacité 70% */
+    background-image: url('assets/heart-icon.svg'); /* Réutilise l'icône */
+    filter: brightness(0) invert(1); /* Icône blanche */
+}
+
 .info-zone {
-    padding: 12px;
+    width: 100%; /* Ajusté pour respecter 80% du conteneur */
+    max-width: 250px; /* Limite à 250px */
+    padding: 10px; /* 12-16px */
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 8px; /* Espacement général */
 }
 
 .info-line {
@@ -672,73 +687,82 @@ header {
     gap: 8px;
 }
 
-.top-badge {
+.main-badge {
     padding: 4px 8px;
-    border-radius: 8px;
-    background-color: #FF6B00;
-    color: #fff;
+    border-radius: 6px;
+    color: #FFFFFF;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-weight: 700;
+    font-size: 11px;
 }
 
 .product-name {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 14px; /* Réduit à 14px */
     color: #111827;
     margin: 0;
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    opacity: 0.7; /* Opacité 70% */
 }
 
 .current-price {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 14px; /* Réduit à 14px */
     color: #FF6B00; /* Orange/rouge */
     margin: 0;
 }
 
 .old-price {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 10px; /* Réduit à 10px */
+    font-weight: 300; /* Light */
     color: #6B7280;
     text-decoration: line-through;
     margin: 0;
 }
 
 .nav-arrow {
-    width: 24px;
-    height: 24px;
+    width: 16px; /* Taille réduite */
+    height: 16px;
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 200ms ease;
+    margin-left: auto; /* Aligné à droite sur la même ligne */
 }
 
 .nav-arrow:hover {
     opacity: 1;
 }
 
+.nav-arrow img {
+    width: 100%;
+    height: 100%;
+}
+
 .rating {
-    font-size: 16px;
-    color: #FF6B00;
+    font-size: 10px;
+    color: #FFD700; /* Étoiles jaunes */
 }
 
 .reviews {
     font-family: 'Inter', sans-serif;
-    font-size: 14px;
+    font-size: 10px; /* Réduit à 10px */
+    font-weight: 300; /* Light */
     color: #6B7280;
     margin: 0;
 }
 
 .category-badge {
     padding: 2px 6px;
-    border-radius: 8px;
-    background-color: #003D8F;
-    color: #fff;
+    border-radius: 6px;
+    background-color: #E5E7EB; /* Gris clair */
+    color: #111827;
     font-family: 'Inter', sans-serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .product-category {
@@ -790,7 +814,7 @@ header {
 
 .product-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 
