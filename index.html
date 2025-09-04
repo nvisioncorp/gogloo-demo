@@ -157,101 +157,215 @@
 
 <section class="recommended-products">
     <h2 class="recommended-title">Trouver ce qui vous intéresse</h2>
-    <div class="filters">
-        <img src="assets/arrow-left.svg" alt="Précédent" class="filter-arrow" />
-        <button class="filter-pill active">Recommandé</button>
-        <button class="filter-pill">Vêtements</button>
-        <button class="filter-pill">Immobilier</button>
-        <button class="filter-pill">Matériaux de construction</button>
-        <button class="filter-pill">Photo</button>
-        <button class="filter-pill">Chaussures</button>
-        <button class="filter-pill">Parfum</button>
-        <button class="filter-pill">Sac</button>
-        <button class="filter-pill">Pneus</button>
-        <button class="filter-pill">Fournitures scolaires</button>
-        <img src="assets/arrow-right.svg" alt="Suivant" class="filter-arrow" />
+    <div class="filters-container">
+        <button class="filter-arrow left-arrow" aria-label="Scroll left"><img src="assets/arrow-left.svg" alt="Flèche gauche" /></button>
+        <div class="filters">
+            <button class="filter-pill active" data-filter="recommended">Recommandé</button>
+            <button class="filter-pill" data-filter="clothing">Vêtements</button>
+            <button class="filter-pill" data-filter="real-estate">Immobilier</button>
+            <button class="filter-pill" data-filter="construction">Matériaux de construction</button>
+            <button class="filter-pill" data-filter="photo">Photo</button>
+            <button class="filter-pill" data-filter="shoes">Chaussures</button>
+            <button class="filter-pill" data-filter="perfume">Parfum</button>
+            <button class="filter-pill" data-filter="bag">Sac</button>
+            <button class="filter-pill" data-filter="tires">Pneus</button>
+            <button class="filter-pill" data-filter="supplies">Fournitures scolaires</button>
+        </div>
+        <button class="filter-arrow right-arrow" aria-label="Scroll right"><img src="assets/arrow-right.svg" alt="Flèche droit" /></button>
     </div>
     <div class="products-grid">
         <div class="product-card">
-            <span class="badge">Top</span>
-            <img src="assets/product1.jpg" alt="Samsung Galaxy Z" class="product-image" />
-            <p class="product-title">Samsung Galaxy Z</p>
-            <div class="product-price">
-                <span class="old-price">150 000 FCFA</span>
-                <span class="current-price">130 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product1.jpg" alt="Samsung Galaxy Z" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐☆ (4.5) – 268 avis</div>
-            <p class="product-meta">Vendu par TechStore</p>
-            <button class="product-button">Ajouter</button>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">EXCLU</span>
+                    <p class="product-name">Samsung Galaxy Z</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">130 000 FCFA</span>
+                    <span class="old-price">150 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+                    <span class="reviews">(268 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Nouveauté</span>
+                    <p class="product-category">Technologie</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <span class="badge">-25%</span>
-            <img src="assets/product2.jpg" alt="Épices locales" class="product-image" />
-            <p class="product-title">Épices locales</p>
-            <div class="product-price">
-                <span class="current-price">5 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product2.jpg" alt="Épices locales" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐☆☆ (3.0) – 120 avis</div>
-            <p class="product-meta">Catégorie Alimentation</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">-25%</span>
+                    <p class="product-name">Épices locales</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">5 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐☆☆</div>
+                    <span class="reviews">(120 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Populaire</span>
+                    <p class="product-category">Alimentation</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <span class="badge">Sélection</span>
-            <img src="assets/product3.jpg" alt="Lotion Corporel" class="product-image" />
-            <p class="product-title">Lotion Corporel</p>
-            <div class="product-price">
-                <span class="current-price">8 500 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product3.jpg" alt="Lotion Corporel" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐⭐ (5.0) – 45 avis</div>
-            <p class="product-meta">Beauté</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">Sélection</span>
+                    <p class="product-name">Lotion Corporel</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">8 500 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <span class="reviews">(45 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Tendance</span>
+                    <p class="product-category">Beauté</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <img src="assets/product4.jpg" alt="Clé à mollette" class="product-image" />
-            <p class="product-title">Clé à mollette</p>
-            <div class="product-price">
-                <span class="old-price">10 000 FCFA</span>
-                <span class="current-price">8 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product4.jpg" alt="Clé à mollette" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐☆ (4.2) – 89 avis</div>
-            <p class="product-meta">Vendu par OutilsPro</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">Promo</span>
+                    <p class="product-name">Clé à mollette</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">8 000 FCFA</span>
+                    <span class="old-price">10 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+                    <span class="reviews">(89 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Outil</span>
+                    <p class="product-category">Outils</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <span class="badge">Top</span>
-            <img src="assets/product5.jpg" alt="Savon noir local" class="product-image" />
-            <p class="product-title">Savon noir local</p>
-            <div class="product-price">
-                <span class="current-price">3 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product5.jpg" alt="Savon noir local" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐☆☆ (3.5) – 150 avis</div>
-            <p class="product-meta">Catégorie Hygiène</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">Top</span>
+                    <p class="product-name">Savon noir local</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">3 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐☆☆</div>
+                    <span class="reviews">(150 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Local</span>
+                    <p class="product-category">Hygiène</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <img src="assets/product6.jpg" alt="Chaise en plastique" class="product-image" />
-            <p class="product-title">Chaise en plastique</p>
-            <div class="product-price">
-                <span class="current-price">15 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product6.jpg" alt="Chaise en plastique" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐☆ (4.0) – 200 avis</div>
-            <p class="product-meta">Meubles</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <p class="product-name">Chaise en plastique</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">15 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+                    <span class="reviews">(200 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Meuble</span>
+                    <p class="product-category">Meubles</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <span class="badge">-15%</span>
-            <img src="assets/product7.jpg" alt="Casque Bluetooth" class="product-image" />
-            <p class="product-title">Casque Bluetooth</p>
-            <div class="product-price">
-                <span class="old-price">25 000 FCFA</span>
-                <span class="current-price">21 250 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product7.jpg" alt="Casque Bluetooth" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐☆ (4.3) – 300 avis</div>
-            <p class="product-meta">Vendu par AudioTech</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <span class="badge top-badge">-15%</span>
+                    <p class="product-name">Casque Bluetooth</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">21 250 FCFA</span>
+                    <span class="old-price">25 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+                    <span class="reviews">(300 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Audio</span>
+                    <p class="product-category">Électronique</p>
+                </div>
+            </div>
         </div>
         <div class="product-card">
-            <img src="assets/product8.jpg" alt="Tissus wax colorés" class="product-image" />
-            <p class="product-title">Tissus wax colorés</p>
-            <div class="product-price">
-                <span class="current-price">12 000 FCFA</span>
+            <div class="image-zone">
+                <img src="assets/product8.jpg" alt="Tissus wax colorés" class="product-image" />
+                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
-            <div class="product-rating">⭐⭐⭐⭐☆ (4.1) – 175 avis</div>
-            <p class="product-meta">Catégorie Mode</p>
+            <div class="info-zone">
+                <div class="info-line">
+                    <p class="product-name">Tissus wax colorés</p>
+                </div>
+                <div class="info-line">
+                    <span class="current-price">12 000 FCFA</span>
+                    <img src="assets/arrow-right-circle.svg" alt="Voir détails" class="nav-arrow" />
+                </div>
+                <div class="info-line">
+                    <div class="rating">⭐⭐⭐⭐☆</div>
+                    <span class="reviews">(175 avis)</span>
+                </div>
+                <div class="info-line">
+                    <span class="badge category-badge">Mode</span>
+                    <p class="product-category">Textile</p>
+                </div>
+            </div>
         </div>
     </div>
     <button class="load-more">Afficher plus</button>
@@ -300,6 +414,9 @@
         <p class="footer-copyright">© 2025 Gogloo. Tous droits réservés.</p>
     </footer>
 
+
+    <!-- Lien vers script.js -->
+<script src="script.js"></script>
 
 </body>
 
