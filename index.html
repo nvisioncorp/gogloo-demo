@@ -157,8 +157,11 @@
 
 <section class="recommended-products">
     <h2 class="recommended-title">Trouver ce qui vous intéresse</h2>
+    
     <div class="filters-container">
-        <button class="filter-arrow left-arrow" aria-label="Scroll left"><img src="assets/arrow-left.svg" alt="Flèche gauche" /></button>
+        <button class="filter-arrow left-arrow" aria-label="Scroll left">
+            <img src="assets/arrow-left.svg" alt="Flèche gauche" />
+        </button>
         <div class="filters">
             <button class="filter-pill active" data-filter="recommended">Recommandé</button>
             <button class="filter-pill" data-filter="clothing">Vêtements</button>
@@ -171,22 +174,32 @@
             <button class="filter-pill" data-filter="tires">Pneus</button>
             <button class="filter-pill" data-filter="supplies">Fournitures scolaires</button>
         </div>
-        <button class="filter-arrow right-arrow" aria-label="Scroll right"><img src="assets/arrow-right.svg" alt="Flèche droit" /></button>
+        <button class="filter-arrow right-arrow" aria-label="Scroll right">
+            <img src="assets/arrow-right.svg" alt="Flèche droite" />
+        </button>
     </div>
+
     <div class="products-grid">
+        <!-- Carte 1: Samsung Galaxy Z -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product1.jpg" alt="Samsung Galaxy Z" class="product-image" />
-                <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
+                <div class="favorite-icon">
+                    <svg viewBox="0 0 100 100">
+                        <path d="m 28.21685,12.00798 c -5.9299,0 -11.8718,2.2491 -16.4063,6.7187 -9.0690002,8.9391 -9.0586002,23.42876 0,32.37494 l 36.75,36.3126 a 2.0002,2.0002 0 0 0 2.8125,0 c 12.2648,-12.0891 24.547701,-24.1607 36.812501,-36.2501 9.069,-8.93908 9.069,-23.46704 0,-32.40614 -9.069,-8.9392 -23.743401,-8.9394 -32.812501,0 l -5.3438,5.3124 -5.4062,-5.3437 c -4.5345,-4.4696 -10.4764,-6.7188 -16.4062,-6.7187 z m 0,3.9687 c 4.908,0 9.8235,1.8776 13.5937,5.5937 l 6.8125,6.7188 a 2.0002,2.0002 0 0 0 2.8125,0 l 6.75,-6.6875 c 7.5403,-7.4325 19.647301,-7.4323 27.187501,0 7.5402,7.4323 7.5402,19.28646 0,26.71864 -11.7979,11.6292 -23.608301,23.2463 -35.406201,34.8751 l -35.3438,-34.9375 c -7.5346002,-7.44108 -7.5402002,-19.25524 0,-26.68754 3.7701,-3.7161 8.6857,-5.5937 13.5938,-5.5937 z"/>
+                    </svg>
+                </div>
             </div>
             <div class="info-zone">
                 <div class="info-line" style="margin-bottom: 6px;">
                     <span class="main-badge">EXCLU</span>
                     <p class="product-name">Samsung Galaxy Z</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">10 000 FCFA</span>
-                    <span class="old-price">15 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">10 000 FCFA</span>
+                        <span class="old-price">15 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -199,6 +212,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 2: Épices locales -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product2.jpg" alt="Épices locales" class="product-image" />
@@ -209,8 +224,10 @@
                     <span class="main-badge" style="background-color: #1E40AF;">PROMO</span>
                     <p class="product-name">Épices locales</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">7 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">7 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -223,18 +240,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 3: Lotion Corporelle -->
         <div class="product-card">
             <div class="image-zone">
-                <img src="assets/product3.jpg" alt="Lotion Corporel" class="product-image" />
+                <img src="assets/product3.jpg" alt="Lotion Corporelle" class="product-image" />
                 <img src="assets/heart-icon.svg" alt="Ajouter aux favoris" class="favorite-icon" />
             </div>
             <div class="info-zone">
                 <div class="info-line" style="margin-bottom: 6px;">
                     <span class="main-badge" style="background-color: #065F46;">TOP</span>
-                    <p class="product-name">Lotion Corporel</p>
+                    <p class="product-name">Lotion Corporelle</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">5 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">5 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -247,6 +268,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 4: Clé à mollette -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product4.jpg" alt="Clé à mollette" class="product-image" />
@@ -257,9 +280,11 @@
                     <span class="main-badge" style="background-color: #1E40AF;">PROMO</span>
                     <p class="product-name">Clé à mollette</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">1 500 FCFA</span>
-                    <span class="old-price">2 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">1 500 FCFA</span>
+                        <span class="old-price">2 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -272,6 +297,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 5: Savon noir local -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product5.jpg" alt="Savon noir local" class="product-image" />
@@ -282,8 +309,10 @@
                     <span class="main-badge" style="background-color: #065F46;">TOP</span>
                     <p class="product-name">Savon noir local</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">3 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">3 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -296,6 +325,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 6: Chaise en plastique -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product6.jpg" alt="Chaise en plastique" class="product-image" />
@@ -305,8 +336,10 @@
                 <div class="info-line" style="margin-bottom: 6px;">
                     <p class="product-name">Chaise en plastique</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">8 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">8 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -319,6 +352,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 7: Casque Bluetooth -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product7.jpg" alt="Casque Bluetooth" class="product-image" />
@@ -329,9 +364,11 @@
                     <span class="main-badge" style="background-color: #1E40AF;">PROMO</span>
                     <p class="product-name">Casque Bluetooth</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">10 000 FCFA</span>
-                    <span class="old-price">12 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">10 000 FCFA</span>
+                        <span class="old-price">12 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -344,6 +381,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Carte 8: Tissus wax colorés -->
         <div class="product-card">
             <div class="image-zone">
                 <img src="assets/product8.jpg" alt="Tissus wax colorés" class="product-image" />
@@ -353,8 +392,10 @@
                 <div class="info-line" style="margin-bottom: 6px;">
                     <p class="product-name">Tissus wax colorés</p>
                 </div>
-                <div class="info-line" style="margin-bottom: 6px;">
-                    <span class="current-price">12 000 FCFA</span>
+                <div class="info-line price-line" style="margin-bottom: 6px;">
+                    <div class="price-container">
+                        <span class="current-price">12 000 FCFA</span>
+                    </div>
                     <img src="assets/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
                 </div>
                 <div class="info-line" style="margin-bottom: 6px;">
@@ -368,6 +409,7 @@
             </div>
         </div>
     </div>
+
     <button class="load-more">Afficher plus</button>
 </section>
 
