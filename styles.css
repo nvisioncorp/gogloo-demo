@@ -847,7 +847,7 @@ header {
 /* service */
 .service-request-section {
     width: 100%;
-    background-color: #F5F5F5;
+    background-color: #FFFFFF;
     padding: 70px 0 80px;
 }
 
@@ -858,17 +858,19 @@ header {
     color: #1B365D;
     text-align: center;
     margin-bottom: 55px;
-    padding-top: 0; /* Suppression du padding-top */
+    margin-top: 0;
+    padding-top: 0;
 }
 
 .services-container {
-    width: 85%;
+    width: 80%;
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 200px 200px;
-    gap: 20px; /* Réduction du gap à 20px */
+    gap: 20px;
+    padding: 0;
 }
 
 .service-card {
@@ -881,6 +883,7 @@ header {
     background-position: center;
     display: flex;
     align-items: flex-end;
+    margin: 0; /* Explicitement défini à 0 pour supprimer toute marge, y compris bottom */
 }
 
 .service-card:hover {
@@ -924,8 +927,17 @@ header {
     background-image: url('./assets/maconnerie.jpg');
 }
 
+.masonry .service-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+}
+
 .masonry .service-name {
     font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .electrician {
@@ -960,14 +972,14 @@ header {
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: white;
+    color: #1A1A1A;
 }
 
 .quote-icon {
     width: 48px;
     height: 48px;
     margin-bottom: 16px;
-    color: white;
+    color: #1A1A1A;
 }
 
 .quote-request .service-name {
@@ -992,6 +1004,7 @@ header {
     width: 265px;
     background-image: url('./assets/camion.jpg');
 }
+
 
 
 
@@ -1218,6 +1231,7 @@ footer {
 }
 
 /* service */
+/* Responsive design */
 @media (max-width: 1200px) {
     .services-container {
         width: 90%;
