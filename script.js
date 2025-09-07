@@ -2,7 +2,7 @@ document.querySelector('.hero-btn').addEventListener('click', () => {
     alert('Fonctionnalité de commande en cours de développement !');
 });
 
-/ Gestion des filtres et scroll horizontal
+
 document.addEventListener('DOMContentLoaded', function() {
     const filtersContainer = document.querySelector('.filters-container');
     const filters = document.querySelector('.filters');
@@ -109,3 +109,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
+ // Gestion des clics sur les cartes de service
+        document.addEventListener('DOMContentLoaded', function() {
+            const serviceCards = document.querySelectorAll('.service-card');
+            
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceName = this.querySelector('.service-name').textContent.trim();
+                    console.log('Service sélectionné:', serviceName);
+                    
+                    // Ici vous pouvez ajouter la logique de redirection
+                    // window.location.href = `/services/${encodeURIComponent(serviceName)}`;
+                });
+            });
+        });
