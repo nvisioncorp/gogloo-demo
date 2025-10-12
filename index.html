@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gogloo - Achetez simple. Vivez mieux.</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <span class="logo-gog">Gog</span><span class="logo-loo">loo</span>
+            </a>
+
+            <!-- Zone Position (desktop only) -->
+            <div class="position-zone">
+                <img src="assets/header-icon/position.svg" alt="Position" class="position-icon">
+                <div class="position-text">
+                    <span id="position-label">Votre région</span>
+                    <span id="position-value">Bénin</span>
+                </div>
+            </div>
+            <!-- Dropdown pour position -->
+            <div class="dropdown position-dropdown" id="position-dropdown">
+                <button onclick="detectLocation()">Détecter ma position actuelle</button>
+                <select id="manual-position">
+                    <option value="Bénin">Bénin</option>
+                    <option value="France">France</option>
+                    <!-- Ajoute plus d'options -->
+                </select>
+                <button onclick="savePosition()">Enregistrer</button>
+            </div>
+
+            <!-- Barre de recherche -->
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-bar" placeholder="Rechercher...">
+                <div class="custom-select" id="search-category">
+                    <div class="selected-option">
+                        <span>Tous</span>
+                        <img src="assets/header-icon/filter.svg" alt="Filtre" class="filter-icon">
+                    </div>
+                    <div class="options-list" style="display: none;">
+                        <div class="option-group">
+                            <div class="group-title products-title">Produit</div>
+                            <ul>
+                                <li data-value="all">Tous</li>
+                                <li data-value="mode">Mode</li>
+                                <li data-value="high-tech">High-Tech & Informatique</li>
+                                <li data-value="immobilier">Immobilier</li>
+                                <li data-value="beaute">Béauté</li>
+                                <li data-value="billetterie">Billetterie</li>
+                                <li data-value="auto-moto">Auto & Moto</li>
+                            </ul>
+                        </div>
+                        <div class="option-group">
+                            <div class="group-title services-title">Service</div>
+                            <ul>
+                                <li data-value="maconnerie">Maçonnerie</li>
+                                <li data-value="electricien">Électricien professionnel</li>
+                                <li data-value="peinture">Service de peinture intérieure</li>
+                                <li data-value="location-camion">Location de camion pour déménagement</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <button class="search-button" aria-label="Rechercher">
+                    <img src="assets/header-icon/search.svg" alt="Rechercher">
+                </button>
+                <!-- Suggestions -->
+                <div class="search-suggestions" id="search-suggestions"></div>
+            </div>
+
+            <!-- Nav Desktop -->
+            <nav class="nav desktop-nav">
+                <ul class="nav-links">
+                    <li class="nav-item language">
+                        <img src="assets/header-icon/globe.svg" alt="Langue"> Français
+                        <div class="dropdown lang-dropdown">
+                            <button onclick="changeLang('fr')">Français</button>
+                            <button onclick="changeLang('en')">Anglais</button>
+                            <button onclick="changeLang('es')">Español</button>
+                        </div>
+                    </li>
+                    <li class="nav-item help">
+                        <img src="assets/header-icon/question.svg" alt="Aide"> Aide
+                        <div class="dropdown help-dropdown">
+                            <a href="/help">Centre d’aide</a>
+                            <a href="/faq">FAQ</a>
+                            <a href="/contact">Nous contacter</a>
+                            <button onclick="openChat()">Chat en direct</button>
+                        </div>
+                    </li>
+                    <li class="nav-item account">
+                        <img src="assets/header-icon/user.svg" alt="Compte"> Compte
+                        <div class="dropdown account-dropdown">
+                            <!-- Contenu dynamique via JS -->
+                        </div>
+                    </li>
+                    <li class="nav-item cart">
+                        <img src="assets/header-icon/shopping-cart.svg" alt="Panier">
+                        <span class="cart-badge" id="cart-count">0</span>
+                        <div class="dropdown cart-dropdown">
+                            <!-- Mini-panier dynamique -->
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Nav Mobile/Tablette -->
+            <nav class="nav mobile-nav">
+                <img src="assets/header-icon/position.svg" alt="Position" class="position-icon-mobile" onclick="toggleDropdown('position-dropdown')">
+                    <div class="cart-icon-mobile" onclick="openCart()">
+                        <img src="assets/header-icon/shopping-cart.svg" alt="Panier">
+                        <span class="cart-badge" id="cart-count-mobile">0</span>
+                    </div>
+                <img src="assets/header-icon/menu.svg" alt="Menu" class="burger" onclick="toggleMenu()">
+                <!-- Menu latéral -->
+                <div class="side-menu" id="side-menu">
+                    <button class="close-menu" onclick="toggleMenu()">×</button>
+                    <ul>
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/categories">Catégories</a></li>
+                        <li><a href="/trends">Tendances actuelles</a></li>
+                        <li class="language-mobile">Langue: Français</li>
+                        <li><a href="/help">Aide</a></li>
+                        <li><a href="/account">Compte</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Promo Bar -->
+    <section class="promo-bar" id="promo-bar">
+        <p class="promo-text">-15% sur les cosmetique cette semaine | Livraisons gratuite dès 30 000 FCFA</p>
+        <a href="/promotions" class="promo-link">En savoir plus</a>
+        <button class="close-promo" onclick="closePromoBar()">×</button>
+    </section>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Achetez simple. Vivez mieux.</h1>
+                <p>Gogloo sélectionne, stocke et livre vos produits essentiels en toute confiance.</p>
+                <a href="#recommended-products" class="cta-button" aria-label="Commencer vos achats sur Gogloo" onclick="trackEvent('cta_hero_click')">Commencez vos achats</a>
+            </div>
+        </section>
+
+        <!-- Features Bar -->
+        <section class="features">
+            <div class="feature-item">
+                <img src="assets/features/truck.svg" alt="Icône de livraison rapide">
+                <p>Livraison rapide locale</p>
+            </div>
+            <div class="feature-item">
+                <img src="assets/features/payment.svg" alt="Icône de paiement sécurisé">
+                <p>Paiement mobile sécurisé</p>
+            </div>
+            <div class="feature-item">
+                <img src="assets/features/stock.svg" alt="Icône de stock vérifié">
+                <p>Stock et vérifié</p>
+            </div>
+            <div class="feature-item">
+                <img src="assets/features/support.svg" alt="Icône de support client">
+                <p>SAV humain et efficace</p>
+            </div>
+        </section>
+
+        <!-- Explorez par catégorie -->
+        <section class="categories">
+            <h2 class="category-title">Explorez par catégorie</h2>
+            <div class="category-content" >
+                <button id="prev-arrow" class="category-arrow" aria-label="Défilement vers la gauche" aria-controls="category-list" aria-disabled="true">
+                    <img src="assets/category/arrow-left.svg" alt="">
+                </button>
+
+                <!-- wrapper qui masque le overflow et permet fade gradient -->
+                <div class="category-viewport" aria-hidden="false">
+                <div class="category-list" id="category-list" role="list" aria-roledescription="carousel" tabindex="0">
+                    <!-- Exemple d'item : -->
+                    <button class="category-item" role="listitem" onclick="redirectToCategory('Mode')" aria-label="Voir la catégorie Mode" tabindex="0">
+                        <img src="assets/category/mode.svg" alt="Icône Mode">
+                        <span>Mode</span>
+                    </button>
+
+                    <button class="category-item" onclick="redirectToCategory('High-Tech & Informatique')" aria-label="Voir la catégorie High-Tech & Informatique">
+                        <img src="assets/category/hightech.svg" alt="Icône High-Tech & Informatique">
+                        <span>High-Tech & Informatique</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Immobilier')" aria-label="Voir la catégorie Immobilier">
+                        <img src="assets/category/immobilier.svg" alt="Icône Immobilier">
+                        <span>Immobilier</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Beauté')" aria-label="Voir la catégorie Beauté">
+                        <img src="assets/category/beaute.svg" alt="Icône Beauté">
+                        <span>Beauté</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Billeterie')" aria-label="Voir la catégorie Billeterie">
+                        <img src="assets/category/billeterie.svg" alt="Icône Billeterie">
+                        <span>Billeterie</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Auto & Moto')" aria-label="Voir la catégorie Auto & Moto">
+                        <img src="assets/category/auto.svg" alt="Icône Auto & Moto">
+                        <span>Auto & Moto</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Mercerie & Tissus')" aria-label="Voir la catégorie Mercerie & Tissus">
+                        <img src="assets/category/mercerie.svg" alt="Icône Mercerie & Tissus">
+                        <span>Mercerie & Tissus</span>
+                    </button>
+                    <button class="category-item" onclick="redirectToCategory('Quincaillerie & Bricolage')" aria-label="Voir la catégorie Quincaillerie & Bricolage">
+                        <img src="assets/category/bricolage.svg" alt="Icône Quincaillerie & Bricolage">
+                        <span>Quincaillerie & Bricolage</span>
+                    </button>
+                </div>
+
+                <!-- gradients sur les bords -->
+                <div class="category-fade left"></div>
+                <div class="category-fade right"></div>
+                </div>
+
+                <button id="next-arrow" class="category-arrow" aria-label="Défilement vers la droite" aria-controls="category-list" aria-disabled="false">
+                    <img src="assets/category/arrow-right.svg" alt="">
+                </button>
+            </div>
+        </section>
+
+        <!-- Tendances actuelles -->
+        <section class="trends">
+            <h2>Tendances actuelles</h2>
+            <div class="trends-grid">
+                <article role="article" tabindex="0" aria-labelledby="prod-1-title" class="trend-card" aria-expanded="false">
+                    <div class="trend-image">
+                        <img src="assets/trends/huile-capillaire.jpg" alt="Huile capillaire naturelle" loading="lazy">
+                    </div>
+                    <img src="assets/trends/trend-icon.svg" alt="Icône tendance" class="trend-icon" aria-hidden="true">
+                    <p id="prod-1-title">Huile capillaire naturelle</p>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Huile capillaire naturelle">Aperçu</button>
+                        <button aria-label="Ajouter au panier Huile capillaire naturelle"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </article>
+                <article role="article" tabindex="0" aria-labelledby="prod-2-title" class="trend-card" aria-expanded="false">
+                    <div class="trend-image">
+                        <img src="assets/trends/sneakers.jpg" alt="Sneakers Unisex" loading="lazy">
+                    </div>
+                    <img src="assets/trends/trend-icon.svg" alt="Icône tendance" class="trend-icon" aria-hidden="true">
+                    <p id="prod-2-title">Sneakers Unisex</p>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Sneakers Unisex">Aperçu</button>
+                        <button aria-label="Ajouter au panier Sneakers Unisex"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </article>
+                <article role="article" tabindex="0" aria-labelledby="prod-3-title" class="trend-card" aria-expanded="false">
+                    <div class="trend-image">
+                        <img src="assets/trends/billet-dubai.jpg" alt="Destination Dubaï Aller-retour" loading="lazy">
+                    </div>
+                    <img src="assets/trends/trend-icon.svg" alt="Icône tendance" class="trend-icon" aria-hidden="true">
+                    <p id="prod-3-title">Destination Dubaï</p>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Destination Dubaï">Aperçu</button>
+                        <button aria-label="Ajouter au panier Destination Dubaï"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </article>
+                <article role="article" tabindex="0" aria-labelledby="prod-4-title" class="trend-card" aria-expanded="false">
+                    <div class="trend-image">
+                        <img src="assets/trends/perceuse.jpg" alt="Perceuse Électrique Compact" loading="lazy">
+                    </div>
+                    <img src="assets/trends/trend-icon.svg" alt="Icône tendance" class="trend-icon" aria-hidden="true">
+                    <p id="prod-4-title">Perceuse Électrique</p>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Perceuse Électrique">Aperçu</button>
+                        <button aria-label="Ajouter au panier Perceuse Électrique"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Trouver ce qui vous intéresse -->
+        <section class="recommended-products" id="recommended-products">
+            <h2 class="recommended-title">Trouver ce qui vous intéresse</h2>
+            
+            <div class="filters-container" id="filters-container" role="radiogroup" aria-label="Filtres de produits">
+                <button class="filter-arrow left-arrow" aria-label="Faire défiler les filtres à gauche" aria-controls="filters">
+                    <img src="assets/product/arrow-left.svg" alt="Flèche gauche" />
+                </button>
+                <div class="filter-fade left"></div>
+                <div class="filters" id="filters">
+                    <button class="filter-pill active" data-filter="recommended" role="radio" aria-checked="true">Recommandé</button>
+                    <button class="filter-pill" data-filter="clothing" role="radio" aria-checked="false">Vêtements</button>
+                    <button class="filter-pill" data-filter="real-estate" role="radio" aria-checked="false">Immobilier</button>
+                    <button class="filter-pill" data-filter="construction" role="radio" aria-checked="false">Matériaux de construction</button>
+                    <button class="filter-pill" data-filter="photo" role="radio" aria-checked="false">Photo</button>
+                    <button class="filter-pill" data-filter="shoes" role="radio" aria-checked="false">Chaussures</button>
+                    <button class="filter-pill" data-filter="perfume" role="radio" aria-checked="false">Parfum</button>
+                    <button class="filter-pill" data-filter="bag" role="radio" aria-checked="false">Sac</button>
+                    <button class="filter-pill" data-filter="tires" role="radio" aria-checked="false">Pneus</button>
+                    <button class="filter-pill" data-filter="supplies" role="radio" aria-checked="false">Fournitures scolaires</button>
+                    <button class="filter-pill" data-filter="textile" role="radio" aria-checked="false">Tissus</button>
+                    <button class="filter-pill" data-filter="house" role="radio" aria-checked="false">Maison et cuisine</button>
+                    <button class="filter-pill" data-filter="divers" role="radio" aria-checked="false">Divers</button>
+                    <button class="filter-pill" data-filter="meubles" role="radio" aria-checked="false">Meubles</button>
+                    <button class="filter-pill" data-filter="beaute" role="radio" aria-checked="false">Beauté et soins</button>
+                    <button class="filter-pill" data-filter="toys" role="radio" aria-checked="false">Jouets & jeu</button>
+                </div>
+                <button class="filter-arrow right-arrow" aria-label="Faire défiler les filtres à droite" aria-controls="filters">
+                    <img src="assets/product/arrow-right.svg" alt="Flèche droite" />
+                </button>
+                <div class="filter-fade right"></div>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Carte 1: Samsung Galaxy Z -->
+                <div class="product-card" data-category="informatique" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product1/product1.jpg" alt="Samsung Galaxy Z" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge">EXCLU</span>
+                            <p class="product-name">Samsung Galaxy Z</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">10 000 FCFA</span>
+                                <span class="old-price">15 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐☆</div>
+                            <span class="reviews">(268 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Nouveauté</span>
+                            <p class="product-category">Informatique</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Samsung Galaxy Z">Aperçu</button>
+                        <button aria-label="Ajouter au panier Samsung Galaxy Z"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 2: Épices locales -->
+                <div class="product-card" data-category="alimentation" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product2/product2.jpg" alt="Épices locales" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge" style="background-color: #003087;">PROMO</span>
+                            <p class="product-name">Épices locales</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">7 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐☆☆</div>
+                            <span class="reviews">(120 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Tendance</span>
+                            <p class="product-category">Alimentation</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Épices locales">Aperçu</button>
+                        <button aria-label="Ajouter au panier Épices locales"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 3: Lotion Corporelle -->
+                <div class="product-card" data-category="beaute" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product3/product3.jpg" alt="Lotion Corporelle" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge" style="background-color: #065F46;">TOP</span>
+                            <p class="product-name">Lotion Corporelle</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">5 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐⭐</div>
+                            <span class="reviews">(45 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Populaire</span>
+                            <p class="product-category">Beauté</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Lotion Corporelle">Aperçu</button>
+                        <button aria-label="Ajouter au panier Lotion Corporelle"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 4: Clé à mollette -->
+                <div class="product-card" data-category="outils" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product4/product4.jpg" alt="Clé à mollette" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge" style="background-color: #003087;">PROMO</span>
+                            <p class="product-name">Clé à mollette</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">1 500 FCFA</span>
+                                <span class="old-price">2 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐☆</div>
+                            <span class="reviews">(89 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Nouveauté</span>
+                            <p class="product-category">Outils</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Clé à mollette">Aperçu</button>
+                        <button aria-label="Ajouter au panier Clé à mollette"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 5: Savon noir local -->
+                <div class="product-card" data-category="hygiene" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product5/product5.jpg" alt="Savon noir local" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge" style="background-color: #065F46;">TOP</span>
+                            <p class="product-name">Savon noir local</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">3 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐☆☆</div>
+                            <span class="reviews">(150 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Tendance</span>
+                            <p class="product-category">Hygiène</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Savon noir local">Aperçu</button>
+                        <button aria-label="Ajouter au panier Savon noir local"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 6: Chaise en plastique -->
+                <div class="product-card" data-category="meubles" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product6/product6.jpg" alt="Chaise en plastique" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <p class="product-name">Chaise en plastique</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">8 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐☆</div>
+                            <span class="reviews">(200 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Nouveauté</span>
+                            <p class="product-category">Meubles</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Chaise en plastique">Aperçu</button>
+                        <button aria-label="Ajouter au panier Chaise en plastique"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 7: Casque Bluetooth -->
+                <div class="product-card" data-category="electronique" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product7/product7.jpg" alt="Casque Bluetooth" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <span class="main-badge" style="background-color: #1E40AF;">PROMO</span>
+                            <p class="product-name">Casque Bluetooth</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">10 000 FCFA</span>
+                                <span class="old-price">12 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐☆</div>
+                            <span class="reviews">(300 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Tendance</span>
+                            <p class="product-category">Électronique</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Casque Bluetooth">Aperçu</button>
+                        <button aria-label="Ajouter au panier Casque Bluetooth"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+
+                <!-- Carte 8: Tissus wax colorés -->
+                <div class="product-card" data-category="textile" aria-expanded="false">
+                    <div class="image-zone">
+                        <img src="assets/product/product8/product8.jpg" alt="Tissus wax colorés" class="product-image" loading="lazy" />
+                    </div>
+                    <div class="info-zone">
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <p class="product-name">Tissus wax colorés</p>
+                        </div>
+                        <div class="info-line price-line" style="margin-bottom: 6px;">
+                            <div class="price-container">
+                                <span class="current-price">12 000 FCFA</span>
+                            </div>
+                            <img src="assets/product/chevron-right.svg" alt="Voir détails" class="nav-arrow" />
+                        </div>
+                        <div class="info-line" style="margin-bottom: 6px;">
+                            <div class="rating">⭐⭐⭐⭐☆</div>
+                            <span class="reviews">(175 avis)</span>
+                        </div>
+                        <div class="info-line">
+                            <span class="category-badge">Populaire</span>
+                            <p class="product-category">Textile</p>
+                        </div>
+                    </div>
+                    <div class="card-actions" aria-hidden="true">
+                        <button aria-label="Voir l'aperçu du produit Tissus wax colorés">Aperçu</button>
+                        <button aria-label="Ajouter au panier Tissus wax colorés"><img src="assets/trends/add-to-cart-icon.svg" alt="Ajouter au panier"></button>
+                    </div>
+                </div>
+            </div>
+
+            <button class="load-more" aria-label="Charger plus de produits">Afficher plus</button>
+        </section>
+
+        <section class="service-request-section">
+            <h2 class="service-title">Demander un service</h2>
+            
+            <div class="services-container">
+                <!-- Maçonnerie - Grande carte à gauche -->
+                <div class="service-card masonry" data-service="maconnerie" tabindex="0" role="button" aria-label="Service de maçonnerie">
+                    <div class="service-image">
+                        <img src="assets/services/maconnerie.jpg" alt="" class="service-img" loading="lazy">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-name">Maçonnerie</h3>
+                        <div class="service-action" aria-hidden="true">
+                            <p>Construction et rénovation de qualité par des artisans locaux expérimentés.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" aria-label="Demander un devis pour Maçonnerie" data-action="quote">Demander un devis</button>
+                                <button class="action-btn secondary" aria-label="Prendre RDV pour Maçonnerie" data-action="rdv">Prendre RDV</button>
+                                <button class="action-btn secondary" aria-label="Contact rapide pour Maçonnerie" data-action="contact">Contact rapide</button>
+                                <button class="action-btn secondary" aria-label="Voir détails Maçonnerie" data-action="details">Voir détails</button>
+                                <button class="action-btn icon-btn" aria-label="Ajouter Maçonnerie aux favoris" data-action="favorite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Électricien professionnel -->
+                <div class="service-card electrician" data-service="electricien" tabindex="0" role="button" aria-label="Service d'électricien professionnel">
+                    <div class="service-image">
+                        <img src="assets/services/electricien.jpg" alt="" class="service-img" loading="lazy">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-name">Électricien<br>professionnel</h3>
+                        <div class="service-action" aria-hidden="true">
+                            <p>Installation et réparation électrique sécurisées et fiables.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" aria-label="Demander un devis pour Électricien" data-action="quote">Demander un devis</button>
+                                <button class="action-btn secondary" aria-label="Prendre RDV pour Électricien" data-action="rdv">Prendre RDV</button>
+                                <button class="action-btn secondary" aria-label="Contact rapide pour Électricien" data-action="contact">Contact rapide</button>
+                                <button class="action-btn secondary" aria-label="Voir détails Électricien" data-action="details">Voir détails</button>
+                                <button class="action-btn icon-btn" aria-label="Ajouter Électricien aux favoris" data-action="favorite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Demande de devis - Carte générique -->
+                <div class="service-card quote-request" data-service="devis-generique" tabindex="0" role="button" aria-label="Demande de devis générique">
+                    <div class="service-quote-bg"></div>
+                    <div class="quote-content-wrapper">
+                        <img src="assets/services/quote-icon.svg">
+                        <h3 class="service-name">Demande de devis<br>(service générique)</h3>
+                    </div>
+                    <div class="service-content">
+                        <div class="service-action" aria-hidden="true">
+                            <p>Obtenez un devis personnalisé pour tous vos projets.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" aria-label="Demander un devis générique" data-action="quote">Demander un devis</button>
+                                <button class="action-btn secondary" aria-label="Prendre RDV" data-action="rdv">Prendre RDV</button>
+                                <button class="action-btn secondary" aria-label="Contact rapide" data-action="contact">Contact rapide</button>
+                                <button class="action-btn secondary" aria-label="Voir détails" data-action="details">Voir détails</button>
+                                <button class="action-btn icon-btn" aria-label="Ajouter aux favoris" data-action="favorite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service de peinture intérieure -->
+                <div class="service-card painting" data-service="peinture" tabindex="0" role="button" aria-label="Service de peinture intérieure">
+                    <div class="service-image">
+                        <img src="assets/services/peinture.jpg" alt="" class="service-img" loading="lazy">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-name">Service de peinture<br>intérieure</h3>
+                        <div class="service-action" aria-hidden="true">
+                            <p>Services de peinture intérieure et extérieure, finitions impeccables.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" aria-label="Demander un devis pour Peinture" data-action="quote">Demander un devis</button>
+                                <button class="action-btn secondary" aria-label="Prendre RDV pour Peinture" data-action="rdv">Prendre RDV</button>
+                                <button class="action-btn secondary" aria-label="Contact rapide pour Peinture" data-action="contact">Contact rapide</button>
+                                <button class="action-btn secondary" aria-label="Voir détails Peinture" data-action="details">Voir détails</button>
+                                <button class="action-btn icon-btn" aria-label="Ajouter Peinture aux favoris" data-action="favorite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location de camion -->
+                <div class="service-card truck-rental" data-service="location-camion" tabindex="0" role="button" aria-label="Location de camion pour déménagement">
+                    <div class="service-image">
+                        <img src="assets/services/camion.jpg" alt="" class="service-img" loading="lazy">
+                        <div class="service-overlay"></div>
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-name">Location de camion<br>pour déménagement</h3>
+                        <div class="service-action" aria-hidden="true">
+                            <p>Transport et déménagement faciles avec nos camions disponibles.</p>
+                            <div class="action-buttons">
+                                <button class="action-btn primary" aria-label="Demander un devis pour Location" data-action="quote">Demander un devis</button>
+                                <button class="action-btn secondary" aria-label="Prendre RDV pour Location" data-action="rdv">Prendre RDV</button>
+                                <button class="action-btn secondary" aria-label="Contact rapide pour Location" data-action="contact">Contact rapide</button>
+                                <button class="action-btn secondary" aria-label="Voir détails Location" data-action="details">Voir détails</button>
+                                <button class="action-btn icon-btn" aria-label="Ajouter Location aux favoris" data-action="favorite">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modal Demande de Devis -->
+        <div id="quote-modal" class="service-modal" role="dialog" aria-modal="true" aria-labelledby="quote-modal-title" style="display: none;">
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <button class="modal-close" aria-label="Fermer le formulaire">&times;</button>
+                <h2 id="quote-modal-title">Demander un devis</h2>
+                <form id="quote-form" class="service-form">
+                    <div class="form-group">
+                        <label for="quote-name">Nom complet <span class="required">*</span></label>
+                        <input type="text" id="quote-name" name="name" required aria-required="true">
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-phone">Téléphone <span class="required">*</span></label>
+                        <input type="tel" id="quote-phone" name="phone" required aria-required="true">
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-email">Email</label>
+                        <input type="email" id="quote-email" name="email">
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-address">Adresse</label>
+                        <input type="text" id="quote-address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-description">Description du projet <span class="required">*</span></label>
+                        <textarea id="quote-description" name="description" rows="4" required aria-required="true"></textarea>
+                        <span class="error-message" role="alert"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-date">Date souhaitée</label>
+                        <input type="date" id="quote-date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="quote-budget">Budget estimé (FCFA)</label>
+                        <input type="number" id="quote-budget" name="budget" min="0">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="save-draft">Sauvegarder brouillon</button>
+                        <button type="submit" class="btn-primary">
+                            <span class="btn-text">Envoyer la demande</span>
+                            <span class="btn-loader" style="display: none;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                    <circle cx="12" cy="12" r="10" stroke-width="4" stroke-opacity="0.25"/>
+                                    <path d="M12 2a10 10 0 0 1 10 10" stroke-width="4" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Action Sheet Mobile - À AJOUTER ICI -->
+        <div id="action-sheet" class="action-sheet" role="menu" aria-label="Actions du service">
+            <div class="action-sheet-handle"></div>
+            <h3 class="action-sheet-title" id="action-sheet-title">Actions</h3>
+            <div class="action-sheet-buttons">
+                <button class="action-btn primary" role="menuitem" data-action="quote">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    Demander un devis
+                </button>
+                <button class="action-btn secondary" role="menuitem" data-action="call">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    Appeler
+                </button>
+                <button class="action-btn secondary" role="menuitem" data-action="message">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Envoyer un message
+                </button>
+                <button class="action-btn secondary" role="menuitem" data-action="favorite">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    Ajouter aux favoris
+                </button>
+            </div>
+        </div>
+        <div id="action-sheet-backdrop" class="action-sheet-backdrop"></div>
+
+        <!-- Toast Notification -->
+        <div id="service-toast" class="service-toast" role="status" aria-live="polite" style="display: none;"></div>
+
+        <!-- Pourquoi choisir Gogloo -->
+        <section class="why-choose">
+            <h2>Pourquoi choisir Gogloo ?</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <img src="assets/why/trust-icon.svg" alt="Confiance">
+                    <h3>Confiance</h3>
+                    <p>Tous nos produits sont vérifiés et nos promesses, que des stocks réels.</p>
+                </div>
+                <div class="why-item">
+                    <img src="assets/why/availability-icon.svg" alt="Disponibilité">
+                    <h3>Disponibilité</h3>
+                    <p>Gestion complète des stocks et restock rapide et déployé.</p>
+                </div>
+                <div class="why-item">
+                    <img src="assets/why/simplicity-icon.svg" alt="Simplicité">
+                    <h3>Simplicité</h3>
+                    <p>Navigation fluide, commande humaine. Tout est pensé pour vous.</p>
+                </div>
+                <div class="why-item">
+                    <img src="assets/why/quality-icon.svg" alt="Qualité">
+                    <h3>Qualité</h3>
+                    <p>Sélection rigoureuse de produits. Chaque article est choisi avec soin.</p>
+                </div>
+                <div class="why-item">
+                    <img src="assets/why/proximity-icon.svg" alt="Proximité">
+                    <h3>Proximité</h3>
+                    <p>Ancrage local fort avec une communauté proche de vous.</p>
+                </div>
+                <div class="why-item">
+                    <img src="assets/why/innovation-icon.svg" alt="Innovation">
+                    <h3>Innovation</h3>
+                    <p>Première plateforme e-commerce béninoise innovante.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ils parlent de nous -->
+        <section class="testimonials" role="region" aria-label="Témoignages clients Gogloo">
+            <div class="testimonials-container">
+                <!-- Titre principal -->
+                <h2 class="testimonials-title">Ils parlent de nous</h2>
+
+                <!-- Conteneur du carrousel -->
+                <div class="testimonials-carousel" id="testimonials-carousel">
+                    <!-- Wrapper des slides -->
+                    <div class="testimonials-wrapper" id="testimonials-wrapper">
+                        
+                        <!-- Témoignage 1 -->
+                        <article class="testimonial-slide active" 
+                                role="group" 
+                                aria-roledescription="slide" 
+                                aria-label="Témoignage de Aminata D."
+                                data-testimonial-index="0">
+                            <div class="testimonial-content">
+                                <!-- Photo client -->
+                                <div class="testimonial-avatar-wrapper">
+                                    <img src="assets/testimonials/testimonial-avatar.jpg" 
+                                        alt="Photo de Aminata D." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                </div>
+
+                                <!-- Citation -->
+                                <blockquote class="testimonial-quote">
+                                    <p>« J'ai utilisé Gogloo pour commander des articles ménagers et observer un service de peinture — tout s'est passé sans stress. Le site est rapide, les prestataires pro et j'ai reçu ma commande le jour même. Enfin une plateforme fiable ici ! »</p>
+                                </blockquote>
+
+                                <!-- Nom et ville -->
+                                <cite class="testimonial-author">— Aminata D., Cotonou</cite>
+                            </div>
+                        </article>
+
+                        <!-- Témoignage 2 -->
+                        <article class="testimonial-slide" 
+                                role="group" 
+                                aria-roledescription="slide" 
+                                aria-label="Témoignage de Koffi M."
+                                data-testimonial-index="1">
+                            <div class="testimonial-content">
+                                <div class="testimonial-avatar-wrapper">
+                                    <img src="assets/testimonials/testimonial-avatar2.jpg" 
+                                        alt="Photo de Koffi M." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                </div>
+
+                                <blockquote class="testimonial-quote">
+                                    <p>« Excellent service ! J'ai trouvé des pièces auto introuvables ailleurs. La livraison était ultra rapide et le SAV très réactif. Je recommande Gogloo à tous mes amis. »</p>
+                                </blockquote>
+
+                                <cite class="testimonial-author">— Koffi M., Porto-Novo</cite>
+                            </div>
+                        </article>
+
+                        <!-- Témoignage 3 -->
+                        <article class="testimonial-slide" 
+                                role="group" 
+                                aria-roledescription="slide" 
+                                aria-label="Témoignage de Fatoumata S."
+                                data-testimonial-index="2">
+                            <div class="testimonial-content">
+                                <div class="testimonial-avatar-wrapper">
+                                    <img src="assets/testimonials/testimonial-avatar3.jpg" 
+                                        alt="Photo de Fatoumata S." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                </div>
+
+                                <blockquote class="testimonial-quote">
+                                    <p>« Une révolution pour le shopping en ligne au Bénin ! Interface claire, paiement mobile sécurisé, et une vraie gestion de stock. Plus besoin de chercher pendant des heures. Bravo Gogloo ! »</p>
+                                </blockquote>
+
+                                <cite class="testimonial-author">— Fatoumata S., Parakou</cite>
+                            </div>
+                        </article>
+
+                    </div><!-- Fin testimonials-wrapper -->
+
+                    <!-- Navigation Dots (Pagination) -->
+                    <div class="testimonials-dots" role="tablist" aria-label="Navigation des témoignages">
+                        <button class="testimonial-dot active" 
+                                role="tab"
+                                aria-label="Voir le témoignage 1"
+                                aria-selected="true"
+                                data-dot-index="0"
+                                tabindex="0"></button>
+                        
+                        <button class="testimonial-dot" 
+                                role="tab"
+                                aria-label="Voir le témoignage 2"
+                                aria-selected="false"
+                                data-dot-index="1"
+                                tabindex="-1"></button>
+                        
+                        <button class="testimonial-dot" 
+                                role="tab"
+                                aria-label="Voir le témoignage 3"
+                                aria-selected="false"
+                                data-dot-index="2"
+                                tabindex="-1"></button>
+                    </div>
+
+                    <!-- Boutons de navigation (optionnels, cachés sur mobile/tablette) -->
+                    <button class="testimonial-nav testimonial-nav-prev" 
+                            aria-label="Témoignage précédent"
+                            aria-controls="testimonials-carousel">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <button class="testimonial-nav testimonial-nav-next" 
+                            aria-label="Témoignage suivant"
+                            aria-controls="testimonials-carousel">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+
+                </div><!-- Fin testimonials-carousel -->
+
+            </div><!-- Fin testimonials-container -->
+        </section>
+
+        <!-- Newsletter -->
+        <!-- ============================================
+            SECTION NEWSLETTER - GOGLOO
+            ============================================ -->
+        <section class="newsletter" id="newsletter-section" role="region" aria-labelledby="newsletter-title">
+            <div class="newsletter-container">
+                <!-- Titre principal -->
+                <h2 id="newsletter-title" class="newsletter-title">
+                    Recevez les offres Gogloo avant tout le monde !
+                </h2>
+                
+                <!-- Sous-titre -->
+                <p class="newsletter-subtitle">
+                    Inscrivez-vous à notre newsletter et recevez -10% sur votre première commande.
+                </p>
+                
+                <!-- Formulaire -->
+                <form 
+                    class="newsletter-form" 
+                    id="newsletter-form" 
+                    novalidate
+                    aria-label="Formulaire d'inscription à la newsletter"
+                >
+                    <div class="newsletter-input-wrapper">
+                        <!-- Champ Email -->
+                        <div class="newsletter-input-container">
+                            <input 
+                                type="email" 
+                                id="newsletter-email" 
+                                name="email"
+                                class="newsletter-input" 
+                                placeholder="Votre e-mail"
+                                aria-label="Adresse e-mail pour la newsletter"
+                                aria-required="true"
+                                aria-describedby="newsletter-error newsletter-hint"
+                                autocomplete="email"
+                                required
+                            >
+                            
+                            <!-- Icône de validation (caché par défaut) -->
+                            <span class="newsletter-icon newsletter-icon-success" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </span>
+                            
+                            <span class="newsletter-icon newsletter-icon-error" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                                </svg>
+                            </span>
+                        </div>
+                        
+                        <!-- Bouton d'inscription -->
+                        <button 
+                            type="submit" 
+                            class="newsletter-button"
+                            aria-label="S'inscrire à la newsletter"
+                        >
+                            <span class="newsletter-button-text">S'inscrire</span>
+                            
+                            <!-- Loader (caché par défaut) -->
+                            <span class="newsletter-button-loader" aria-hidden="true">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                    <circle cx="12" cy="12" r="10" stroke-opacity="0.25"/>
+                                    <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                    
+                    <!-- Message d'erreur -->
+                    <div 
+                        id="newsletter-error" 
+                        class="newsletter-message newsletter-error-message" 
+                        role="alert" 
+                        aria-live="polite"
+                        aria-atomic="true"
+                    ></div>
+                    
+                    <!-- Message de succès -->
+                    <div 
+                        id="newsletter-success" 
+                        class="newsletter-message newsletter-success-message" 
+                        role="status" 
+                        aria-live="polite"
+                        aria-atomic="true"
+                    ></div>
+                    
+                    <!-- Hint caché pour lecteurs d'écran -->
+                    <span id="newsletter-hint" class="visually-hidden">
+                        Veuillez entrer une adresse e-mail valide pour recevoir nos offres exclusives
+                    </span>
+                </form>
+                
+                <!-- Informations légales -->
+                <p class="newsletter-legal">
+                    En vous inscrivant, vous acceptez de recevoir nos communications marketing. 
+                    <a href="/privacy" class="newsletter-link">Politique de confidentialité</a>
+                </p>
+            </div>
+        </section>
+
+        <!-- Toast notification (utilisé par le JS) -->
+        <div 
+            id="newsletter-toast" 
+            class="newsletter-toast" 
+            role="status" 
+            aria-live="polite" 
+            aria-atomic="true"
+        ></div>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+        <div class="footer-container">
+            <!-- SECTION 1: CATÉGORIES -->
+            <div class="footer-section footer-categories">
+                <h3 class="footer-title">Catégories</h3>
+                <ul class="footer-list">
+                    <li>Immobilier</li>
+                    <li>Mode</li>
+                    <li>High-Tech</li>
+                    <li>Auto & Moto</li>
+                    <li>Beauté</li>
+                    <li>Billetterie</li>
+                    <li>Mercerie & Tissus</li>
+                    <li>Services BTP</li>
+                    <li>Quincaillerie & Bricolage</li>
+                    <li>Alimentation & Boissons</li>
+                    <li>Transport & Location</li>
+                </ul>
+            </div>
+
+            <!-- SECTION 2: SERVICE CLIENT -->
+            <div class="footer-section footer-service">
+                <h3 class="footer-title">Service Client</h3>
+                <ul class="footer-list">
+                    <li>Nous contacter</li>
+                    <li>FAQ</li>
+                    <li>Livraison</li>
+                    <li>Retours</li>
+                </ul>
+            </div>
+
+            <!-- SECTION 3: NOUS CONNAÎTRE -->
+            <div class="footer-section footer-about">
+                <h3 class="footer-title">Nous connaître</h3>
+                <ul class="footer-list">
+                    <li>À propos de nous</li>
+                    <li>Accessibilité</li>
+                    <li>Centre d'aide et FAQ</li>
+                    <li>Contactez-nous</li>
+                </ul>
+            </div>
+
+            <!-- SECTION 4: RÉSEAUX SOCIAUX -->
+            <div class="footer-section footer-social-section">
+                <h3 class="footer-title">Suivez-nous</h3>
+                <div class="footer-social">
+                    <a href="https://facebook.com/gogloo" 
+                    class="social-link" 
+                    data-social="Facebook"
+                    aria-label="Suivez-nous sur Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <img src="assets/footer/facebook-icon.svg" alt="Facebook" loading="lazy">
+                    </a>
+                    <a href="https://facebook.com/gogloo" 
+                    class="social-link" 
+                    data-social="Facebook"
+                    aria-label="Suivez-nous sur Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <img src="assets/footer/whatsapp-icon.svg" alt="Facebook" loading="lazy">
+                    </a>
+                    
+                    <a href="https://instagram.com/gogloo" 
+                    class="social-link" 
+                    data-social="Instagram"
+                    aria-label="Suivez-nous sur Instagram"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <img src="assets/footer/instagram-icon.svg" alt="Instagram" loading="lazy">
+                    </a>
+
+                    <a href="https://facebook.com/gogloo" 
+                    class="social-link" 
+                    data-social="Facebook"
+                    aria-label="Suivez-nous sur Facebook"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <img src="assets/footer/tiktok-icon.svg" alt="Facebook" loading="lazy">
+                    </a>
+                    
+                    <a href="https://youtube.com/@gogloo" 
+                    class="social-link" 
+                    data-social="YouTube"
+                    aria-label="Suivez-nous sur YouTube"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                        <img src="assets/footer/youtube-icon.svg" alt="YouTube" loading="lazy">
+                    </a>
+                </div>
+            </div>
+
+            <!-- SECTION 5: MOYENS DE PAIEMENT -->
+            <div class="footer-section footer-payments-section">
+                <h3 class="footer-title">Nous acceptons</h3>
+                <div class="footer-payments">
+                    <img src="assets/footer/visa.png" alt="Paiement Visa" class="payment-logo" loading="lazy">
+                    <img src="assets/footer/mastercard.png" alt="Paiement Mastercard" class="payment-logo" loading="lazy">
+                    <img src="assets/footer/paypal.png" alt="Paiement PayPal" class="payment-logo" loading="lazy">
+                    <img src="assets/footer/mtn-money.png" alt="Paiement MTN Mobile Money" class="payment-logo" loading="lazy">
+                    <img src="assets/footer/moov-money.png" alt="Paiement Moov Money" class="payment-logo" loading="lazy">
+                    <img src="assets/footer/Binance-pay.png" alt="Paiement Binance Pay" class="payment-logo" loading="lazy">
+                </div>
+            </div>
+
+            <!-- SECTION 6: CERTIFICATS DE SÉCURITÉ -->
+            <div class="footer-section footer-security-section">
+                <h3 class="footer-title">Certificat de sécurité</h3>
+                <div class="footer-security">
+                    <img src="assets/footer/verified-visa.png" alt="Visa Secure" class="security-badge" loading="lazy">
+                    <img src="assets/footer/mastercard-id.png" alt="Mastercard ID Check" class="security-badge" loading="lazy">
+                    <img src="assets/footer/secure-encryption.png" alt="SSL Secure Connection" class="security-badge" loading="lazy">
+                    <img src="assets/footer/apwg.png" alt="APWG Certified" class="security-badge" loading="lazy">
+                    <img src="assets/footer/pci-dss.png" alt="PCI DSS Compliant" class="security-badge" loading="lazy">
+                </div>
+            </div>
+
+            <!-- SECTION 7: LIENS LÉGAUX -->
+            <div class="footer-legal">
+                <div class="legal-links">
+                    <a href="/conditions-utilisation">Conditions d'utilisation</a>
+                    <span class="separator">|</span>
+                    <a href="/politique-confidentialite">Politique de confidentialité</a>
+                    <span class="separator">|</span>
+                    <a href="/reglement-dsa">Règlement sur les services numériques (DSA)</a>
+                    <span class="separator">|</span>
+                    <a href="/mentions-legales">Mentions légales</a>
+                </div>
+                <p class="copyright">
+                    Copyright 2025 Gogloo. Tous droits réservés.
+                </p>
+            </div>
+
+            <!-- BOUTON RETOUR EN HAUT -->
+            <button class="back-to-top" 
+                    aria-label="Retour en haut de la page"
+                    title="Retour en haut">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="18 15 12 9 6 15"></polyline>
+                </svg>
+            </button>
+
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="services.js"></script>
+    <script src="why-choose.js"></script>
+    <script src="js/testimonials.js"></script>
+    <script src="newsletter.js"></script>
+    <script src="footer.js"></script>
+</body>
+</html>
