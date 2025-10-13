@@ -9,11 +9,10 @@ const CONFIG = {
     animationDelay: 100,
     scrollThreshold: 100,
     socialLinks: {
-        facebook: 'https://facebook.com/gogloo',
-        twitter: 'https://twitter.com/gogloo',
+        tiktok: 'https://tiktok.com/@gogloo',
         instagram: 'https://instagram.com/gogloo',
-        linkedin: 'https://linkedin.com/company/gogloo',
-        youtube: 'https://youtube.com/@gogloo'
+        twitter: 'https://twitter.com/gogloo',
+        facebook: 'https://facebook.com/gogloo'
     }
 };
 
@@ -51,12 +50,14 @@ function init() {
     setupServiceLinks();
     setupAboutLinks();
     setupSocialLinks();
-    setupPaymentInfo();
-    setupSecurityBadges();
+    setupTrustLogos();
     setupLegalLinks();
     setupBackToTop();
     setupIntersectionObserver();
     setupKeyboardNavigation();
+    highlightActiveLink();
+    handleImageErrors();
+    trackFooterInteractions();
 
     console.log('✅ Footer initialisé avec succès');
 }
@@ -66,29 +67,18 @@ function init() {
 // ============================================
 
 function setupCategoryLinks() {
-    const categoryLinks = footer.querySelectorAll('.footer-categories li');
+    const categoryLinks = footer.querySelectorAll('.footer-categories a');
 
     categoryLinks.forEach(link => {
-        // Rendre focusable
-        link.setAttribute('tabindex', '0');
-        link.setAttribute('role', 'button');
-
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const category = link.textContent.trim();
-            handleCategoryClick(category);
-        });
-
-        link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                link.click();
-            }
+            console.log(`📂 Navigation vers: ${category}`);
+            trackEvent('footer_category_click', { category });
         });
 
         // Hover effect
         link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateX(5px)';
+            link.style.transform = 'translateX(3px)';
         });
 
         link.addEventListener('mouseleave', () => {
@@ -99,51 +89,23 @@ function setupCategoryLinks() {
     console.log(`📂 ${categoryLinks.length} liens catégories configurés`);
 }
 
-function handleCategoryClick(category) {
-    console.log(`📂 Navigation vers: ${category}`);
-    
-    // Animation de chargement
-    showLoadingToast('Chargement...');
-
-    // Simuler navigation (à remplacer par vraie navigation)
-    setTimeout(() => {
-        const slug = category.toLowerCase()
-            .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '')
-            .replace(/&/g, 'et')
-            .replace(/\s+/g, '-');
-        
-        window.location.href = `/categorie/${slug}`;
-    }, 300);
-}
-
 // ============================================
 // LIENS SERVICE CLIENT
 // ============================================
 
 function setupServiceLinks() {
-    const serviceLinks = footer.querySelectorAll('.footer-service li');
+    const serviceLinks = footer.querySelectorAll('.footer-service-block a');
 
     serviceLinks.forEach(link => {
-        link.setAttribute('tabindex', '0');
-        link.setAttribute('role', 'button');
-
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const service = link.textContent.trim();
-            handleServiceClick(service);
-        });
-
-        link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                link.click();
-            }
+            console.log(`🛎️ Service: ${service}`);
+            trackEvent('footer_service_click', { service });
         });
 
         // Hover effect
         link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateX(5px)';
+            link.style.transform = 'translateX(3px)';
         });
 
         link.addEventListener('mouseleave', () => {
@@ -154,52 +116,23 @@ function setupServiceLinks() {
     console.log(`🛎️ ${serviceLinks.length} liens service client configurés`);
 }
 
-function handleServiceClick(service) {
-    console.log(`🛎️ Service: ${service}`);
-
-    const routes = {
-        'Nous contacter': '/contact',
-        'FAQ': '/faq',
-        'Livraison': '/livraison',
-        'Retours': '/retours'
-    };
-
-    const route = routes[service];
-    if (route) {
-        showLoadingToast('Redirection...');
-        setTimeout(() => {
-            window.location.href = route;
-        }, 300);
-    }
-}
-
 // ============================================
 // LIENS À PROPOS
 // ============================================
 
 function setupAboutLinks() {
-    const aboutLinks = footer.querySelectorAll('.footer-about li');
+    const aboutLinks = footer.querySelectorAll('.footer-about-block a');
 
     aboutLinks.forEach(link => {
-        link.setAttribute('tabindex', '0');
-        link.setAttribute('role', 'button');
-
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const page = link.textContent.trim();
-            handleAboutClick(page);
-        });
-
-        link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                link.click();
-            }
+            console.log(`ℹ️ Page: ${page}`);
+            trackEvent('footer_about_click', { page });
         });
 
         // Hover effect
         link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateX(5px)';
+            link.style.transform = 'translateX(3px)';
         });
 
         link.addEventListener('mouseleave', () => {
@@ -210,31 +143,12 @@ function setupAboutLinks() {
     console.log(`ℹ️ ${aboutLinks.length} liens à propos configurés`);
 }
 
-function handleAboutClick(page) {
-    console.log(`ℹ️ Page: ${page}`);
-
-    const routes = {
-        'À propos de nous': '/a-propos',
-        'Accessibilité': '/accessibilite',
-        'Centre d\'aide et FAQ': '/centre-aide',
-        'Contactez-nous': '/contact'
-    };
-
-    const route = routes[page];
-    if (route) {
-        showLoadingToast('Chargement...');
-        setTimeout(() => {
-            window.location.href = route;
-        }, 300);
-    }
-}
-
 // ============================================
 // LIENS RÉSEAUX SOCIAUX
 // ============================================
 
 function setupSocialLinks() {
-    const socialLinks = footer.querySelectorAll('.social-link');
+    const socialLinks = footer.querySelectorAll('.social-icon');
 
     socialLinks.forEach(link => {
         const platform = link.dataset.social;
@@ -251,22 +165,12 @@ function setupSocialLinks() {
         });
 
         link.addEventListener('mouseenter', () => {
-            link.style.transform = 'translateY(-3px) scale(1.1)';
+            link.style.transform = 'translateY(-3px) scale(1.15)';
         });
 
         link.addEventListener('mouseleave', () => {
             link.style.transform = 'translateY(0) scale(1)';
         });
-
-        // Animation pulse périodique
-        setInterval(() => {
-            if (!link.matches(':hover')) {
-                link.style.animation = 'socialPulse 0.5s ease';
-                setTimeout(() => {
-                    link.style.animation = '';
-                }, 500);
-            }
-        }, 5000 + Math.random() * 3000);
     });
 
     console.log(`🔗 ${socialLinks.length} liens sociaux configurés`);
@@ -275,44 +179,33 @@ function setupSocialLinks() {
 function trackSocialClick(platform) {
     console.log(`🔗 Clic réseau social: ${platform}`);
 
-    // Google Analytics
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'social_click', {
-            'event_category': 'engagement',
-            'event_label': platform,
-            'value': 1
-        });
-    }
-
-    // Facebook Pixel
-    if (typeof fbq !== 'undefined') {
-        fbq('track', 'Contact', {
-            content_name: `Social - ${platform}`
-        });
-    }
+    trackEvent('social_click', { platform });
 }
 
 // ============================================
-// MOYENS DE PAIEMENT
+// LOGOS DE CONFIANCE (PAIEMENTS + SÉCURITÉ)
 // ============================================
 
-function setupPaymentInfo() {
+function setupTrustLogos() {
+    // Logos de paiement
     const paymentLogos = footer.querySelectorAll('.payment-logo');
 
     paymentLogos.forEach(img => {
-        // Tooltip au hover
-        const paymentName = img.alt.replace('Paiement ', '');
+        const paymentName = img.alt;
         img.setAttribute('title', `Paiement sécurisé via ${paymentName}`);
 
         // Animation hover
         img.addEventListener('mouseenter', () => {
-            img.style.transform = 'scale(1.15)';
-            img.style.filter = 'brightness(1.2)';
+            img.style.transform = 'scale(1.1)';
         });
 
         img.addEventListener('mouseleave', () => {
             img.style.transform = 'scale(1)';
-            img.style.filter = 'brightness(1)';
+        });
+
+        // Click pour info
+        img.addEventListener('click', () => {
+            showInfoToast(`💳 Paiement sécurisé via ${paymentName}`);
         });
 
         // Gestion erreur image
@@ -320,37 +213,27 @@ function setupPaymentInfo() {
             img.style.display = 'none';
             console.warn(`⚠️ Logo ${paymentName} non trouvé`);
         });
-
-        // Click pour info
-        img.addEventListener('click', () => {
-            showInfoToast(`Paiement sécurisé via ${paymentName}`);
-        });
     });
 
-    console.log(`💳 ${paymentLogos.length} moyens de paiement configurés`);
-}
-
-// ============================================
-// BADGES SÉCURITÉ
-// ============================================
-
-function setupSecurityBadges() {
+    // Badges de sécurité
     const securityBadges = footer.querySelectorAll('.security-badge');
 
     securityBadges.forEach(img => {
-        // Tooltip
         const badgeName = img.alt;
         img.setAttribute('title', badgeName);
 
         // Animation hover
         img.addEventListener('mouseenter', () => {
-            img.style.transform = 'scale(1.15) rotate(5deg)';
-            img.style.filter = 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))';
+            img.style.transform = 'scale(1.1) rotate(2deg)';
         });
 
         img.addEventListener('mouseleave', () => {
             img.style.transform = 'scale(1) rotate(0deg)';
-            img.style.filter = 'none';
+        });
+
+        // Click pour info
+        img.addEventListener('click', () => {
+            showInfoToast(`🔒 Site certifié ${badgeName}`);
         });
 
         // Gestion erreur
@@ -358,14 +241,9 @@ function setupSecurityBadges() {
             img.style.display = 'none';
             console.warn(`⚠️ Badge ${badgeName} non trouvé`);
         });
-
-        // Click pour info
-        img.addEventListener('click', () => {
-            showInfoToast(`Site certifié ${badgeName}`);
-        });
     });
 
-    console.log(`🔒 ${securityBadges.length} badges sécurité configurés`);
+    console.log(`🔒 ${paymentLogos.length} moyens de paiement et ${securityBadges.length} badges configurés`);
 }
 
 // ============================================
@@ -373,34 +251,21 @@ function setupSecurityBadges() {
 // ============================================
 
 function setupLegalLinks() {
-    const legalLinks = footer.querySelectorAll('.footer-legal a');
+    const legalLinks = footer.querySelectorAll('.footer-legal-links a');
 
     legalLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
             const page = link.textContent.trim();
-            handleLegalClick(page, link.href);
+            console.log(`⚖️ Page légale: ${page}`);
+            trackEvent('footer_legal_click', { page });
         });
 
         link.addEventListener('mouseenter', () => {
-            link.style.textDecoration = 'underline';
-        });
-
-        link.addEventListener('mouseleave', () => {
             link.style.textDecoration = 'none';
         });
     });
 
     console.log(`⚖️ ${legalLinks.length} liens légaux configurés`);
-}
-
-function handleLegalClick(page, url) {
-    console.log(`⚖️ Page légale: ${page}`);
-    showLoadingToast('Chargement du document...');
-    
-    setTimeout(() => {
-        window.location.href = url;
-    }, 300);
 }
 
 // ============================================
@@ -416,7 +281,7 @@ function setupBackToTop() {
     }
 
     // Afficher/masquer selon scroll
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Click event
     backToTopBtn.addEventListener('click', (e) => {
@@ -450,7 +315,7 @@ function handleScroll() {
 }
 
 function scrollToTop() {
-    showSuccessToast('Retour en haut...');
+    showSuccessToast('⬆️ Retour en haut...');
     
     window.scrollTo({
         top: 0,
@@ -474,7 +339,7 @@ function setupIntersectionObserver() {
     const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.1
+        threshold: 0.15
     };
 
     observer = new IntersectionObserver((entries) => {
@@ -491,12 +356,12 @@ function setupIntersectionObserver() {
 }
 
 function animateFooterEntrance() {
-    const sections = footer.querySelectorAll('.footer-section');
+    const columns = footer.querySelectorAll('.footer-main > *');
     
-    sections.forEach((section, index) => {
+    columns.forEach((column, index) => {
         setTimeout(() => {
-            section.style.opacity = '1';
-            section.style.transform = 'translateY(0)';
+            column.style.opacity = '1';
+            column.style.transform = 'translateY(0)';
         }, index * CONFIG.animationDelay);
     });
 }
@@ -507,14 +372,12 @@ function animateFooterEntrance() {
 
 function setupKeyboardNavigation() {
     const focusableElements = footer.querySelectorAll(
-        'a, button, [tabindex="0"], [role="button"]'
+        'a, button, [tabindex="0"]'
     );
 
     focusableElements.forEach((el, index) => {
         el.addEventListener('keydown', (e) => {
-            if (e.key === 'Tab') {
-                // Laisser le comportement par défaut
-            } else if (e.key === 'ArrowDown') {
+            if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 const nextIndex = (index + 1) % focusableElements.length;
                 focusableElements[nextIndex].focus();
@@ -527,6 +390,67 @@ function setupKeyboardNavigation() {
     });
 
     console.log(`⌨️ Navigation clavier configurée (${focusableElements.length} éléments)`);
+}
+
+// ============================================
+// HIGHLIGHT LIEN ACTIF
+// ============================================
+
+function highlightActiveLink() {
+    const currentPath = window.location.pathname;
+    const links = footer.querySelectorAll('.footer-col-list a, .footer-legal-links a');
+    
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && currentPath.includes(href) && href !== '/') {
+            link.classList.add('active');
+        }
+    });
+    
+    console.log('🔗 Liens actifs mis en surbrillance');
+}
+
+// ============================================
+// GESTION DES ERREURS IMAGES
+// ============================================
+
+function handleImageErrors() {
+    const images = footer.querySelectorAll('img');
+    
+    images.forEach(img => {
+        if (!img.complete || img.naturalHeight === 0) {
+            img.addEventListener('error', () => {
+                const alt = img.alt || 'Image';
+                console.warn(`⚠️ Erreur de chargement: ${alt}`);
+                img.style.display = 'none';
+            });
+        }
+    });
+}
+
+// ============================================
+// TRACKING ANALYTICS
+// ============================================
+
+function trackFooterInteractions() {
+    console.log('📊 Tracking analytics configuré');
+}
+
+function trackEvent(eventName, params = {}) {
+    // Google Analytics 4
+    if (typeof gtag !== 'undefined') {
+        gtag('event', eventName, {
+            event_category: 'footer',
+            ...params
+        });
+    }
+    
+    // Facebook Pixel
+    if (typeof fbq !== 'undefined') {
+        fbq('trackCustom', eventName, params);
+    }
+    
+    console.log(`📊 Event: ${eventName}`, params);
 }
 
 // ============================================
@@ -550,17 +474,6 @@ function showToast(message, type = 'info') {
     toast.classList.add(type, 'show');
     toast.textContent = message;
 
-    // Icon selon le type
-    const icons = {
-        success: '✓',
-        error: '✕',
-        warning: '⚠',
-        info: 'ℹ',
-        loading: '⌛'
-    };
-
-    toast.textContent = `${icons[type] || ''} ${message}`;
-
     // Auto-hide
     setTimeout(() => {
         toast.classList.remove('show');
@@ -575,33 +488,13 @@ function showErrorToast(message) {
     showToast(message, 'error');
 }
 
-function showWarningToast(message) {
-    showToast(message, 'warning');
-}
-
 function showInfoToast(message) {
     showToast(message, 'info');
-}
-
-function showLoadingToast(message) {
-    showToast(message, 'loading');
 }
 
 // ============================================
 // UTILITAIRES
 // ============================================
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
 
 function getDeviceType() {
     const width = window.innerWidth;
@@ -615,43 +508,28 @@ function getDeviceType() {
 // ============================================
 
 window.GoglooFooter = {
-    /**
-     * Afficher un toast
-     * @param {string} message
-     * @param {string} type - 'success', 'error', 'warning', 'info', 'loading'
-     */
     showToast: function(message, type = 'info') {
         showToast(message, type);
     },
 
-    /**
-     * Scroll to top programmatiquement
-     */
     scrollToTop: function() {
         scrollToTop();
     },
 
-    /**
-     * Réinitialiser les animations
-     */
     resetAnimations: function() {
-        const sections = footer.querySelectorAll('.footer-section');
-        sections.forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
+        const columns = footer.querySelectorAll('.footer-main > *');
+        columns.forEach(column => {
+            column.style.opacity = '0';
+            column.style.transform = 'translateY(30px)';
         });
         animateFooterEntrance();
         console.log('🔄 Animations footer réinitialisées');
     },
 
-    /**
-     * Obtenir des statistiques
-     * @returns {object}
-     */
     getStats: function() {
         return {
-            totalLinks: footer.querySelectorAll('a, [role="button"]').length,
-            socialLinks: footer.querySelectorAll('.social-link').length,
+            totalLinks: footer.querySelectorAll('a').length,
+            socialLinks: footer.querySelectorAll('.social-icon').length,
             paymentMethods: footer.querySelectorAll('.payment-logo').length,
             securityBadges: footer.querySelectorAll('.security-badge').length,
             deviceType: getDeviceType(),
@@ -659,10 +537,6 @@ window.GoglooFooter = {
         };
     },
 
-    /**
-     * Toggle visibilité du bouton retour en haut
-     * @param {boolean} visible
-     */
     toggleBackToTop: function(visible) {
         if (!backToTopBtn) return;
         
