@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header Section -->
+    <!-- ============================================
+        HEADER - SECTION À REMPLACER dans index.html
+       ============================================ -->
+
     <header class="header">
         <div class="header-container">
             <!-- Logo -->
@@ -23,54 +26,149 @@
                     <span id="position-value">Bénin</span>
                 </div>
             </div>
+
             <!-- Dropdown pour position -->
             <div class="dropdown position-dropdown" id="position-dropdown">
                 <button onclick="detectLocation()">Détecter ma position actuelle</button>
                 <select id="manual-position">
                     <option value="Bénin">Bénin</option>
                     <option value="France">France</option>
-                    <!-- Ajoute plus d'options -->
                 </select>
                 <button onclick="savePosition()">Enregistrer</button>
             </div>
 
-            <!-- Barre de recherche -->
-            <div class="search-container">
-                <input type="text" id="search-input" class="search-bar" placeholder="Rechercher...">
-                <div class="custom-select" id="search-category">
-                    <div class="selected-option">
-                        <span>Tous</span>
-                        <img src="assets/header-icon/filter.svg" alt="Filtre" class="filter-icon">
-                    </div>
-                    <div class="options-list" style="display: none;">
-                        <div class="option-group">
-                            <div class="group-title products-title">Produit</div>
-                            <ul>
-                                <li data-value="all">Tous</li>
-                                <li data-value="mode">Mode</li>
-                                <li data-value="high-tech">High-Tech & Informatique</li>
-                                <li data-value="immobilier">Immobilier</li>
-                                <li data-value="beaute">Béauté</li>
-                                <li data-value="billetterie">Billetterie</li>
-                                <li data-value="auto-moto">Auto & Moto</li>
-                            </ul>
+            <!-- ============================================
+                NOUVELLE SEARCH CONTAINER (REMPLACE L'ANCIENNE)
+                ============================================ -->
+            <div class="search-container-wrapper">
+                <div class="search-container" id="search-container" role="search">
+                    
+                    <!-- Category Selector -->
+                    <div class="category-selector" id="category-selector">
+                        <button 
+                            class="category-button" 
+                            id="category-button"
+                            aria-haspopup="listbox"
+                            aria-expanded="false"
+                            aria-label="Sélectionner une catégorie"
+                        >
+                            <span class="category-label" id="category-label">Tous</span>
+                            <svg class="category-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+
+                        <!-- Category Dropdown -->
+                        <div class="category-dropdown" id="category-dropdown" role="listbox">
+                            <div class="category-group">
+                                <div class="category-group-title">Produits</div>
+                                <button class="category-option active" data-value="all" data-label="Tous" role="option">Tous</button>
+                                <button class="category-option" data-value="mode" data-label="Mode" role="option">Mode</button>
+                                <button class="category-option" data-value="high-tech" data-label="High-Tech" role="option">High-Tech & Informatique</button>
+                                <button class="category-option" data-value="immobilier" data-label="Immobilier" role="option">Immobilier</button>
+                                <button class="category-option" data-value="beaute" data-label="Beauté" role="option">Beauté</button>
+                                <button class="category-option" data-value="billetterie" data-label="Billetterie" role="option">Billetterie</button>
+                                <button class="category-option" data-value="auto-moto" data-label="Auto & Moto" role="option">Auto & Moto</button>
+                            </div>
+
+                            <div class="category-group">
+                                <div class="category-group-title services">Services</div>
+                                <button class="category-option" data-value="maconnerie" data-label="Maçonnerie" role="option">Maçonnerie</button>
+                                <button class="category-option" data-value="electricien" data-label="Électricien" role="option">Électricien professionnel</button>
+                                <button class="category-option" data-value="peinture" data-label="Peinture" role="option">Service de peinture</button>
+                                <button class="category-option" data-value="location-camion" data-label="Location" role="option">Location de camion</button>
+                            </div>
                         </div>
-                        <div class="option-group">
-                            <div class="group-title services-title">Service</div>
-                            <ul>
-                                <li data-value="maconnerie">Maçonnerie</li>
-                                <li data-value="electricien">Électricien professionnel</li>
-                                <li data-value="peinture">Service de peinture intérieure</li>
-                                <li data-value="location-camion">Location de camion pour déménagement</li>
-                            </ul>
+                    </div>
+
+                    <!-- Separator -->
+                    <div class="search-separator"></div>
+
+                    <!-- Search Input -->
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        id="search-input"
+                        placeholder="Rechercher..."
+                        autocomplete="off"
+                        aria-label="Champ de recherche"
+                        aria-autocomplete="list"
+                        aria-controls="search-suggestions"
+                    >
+
+                    <!-- Clear Button -->
+                    <button 
+                        class="clear-button" 
+                        id="clear-button"
+                        aria-label="Effacer"
+                        style="display: none;"
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Voice Button (Mobile) -->
+                    <button 
+                        class="voice-button" 
+                        id="voice-button"
+                        aria-label="Recherche vocale"
+                        title="Recherche vocale"
+                    >
+                        <svg class="mic-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                        </svg>
+                    </button>
+
+                    <!-- Search Button -->
+                    <button 
+                        class="search-button" 
+                        id="search-button"
+                        aria-label="Rechercher"
+                    >
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Suggestions Dropdown -->
+                    <div 
+                        class="search-suggestions" 
+                        id="search-suggestions"
+                        role="listbox"
+                        style="display: none;"
+                    >
+                        <!-- Loading -->
+                        <div class="suggestions-loading" id="suggestions-loading" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <span>Recherche...</span>
+                        </div>
+
+                        <!-- Header -->
+                        <div class="suggestions-header" id="suggestions-header" style="display: none;">
+                            <span class="results-count" id="results-count"></span>
+                        </div>
+
+                        <!-- List -->
+                        <div class="suggestions-list" id="suggestions-list"></div>
+
+                        <!-- Empty -->
+                        <div class="suggestions-empty" id="suggestions-empty" style="display: none;">
+                            <p>Aucun résultat</p>
+                            <small>Appuyez sur Entrée pour rechercher</small>
                         </div>
                     </div>
                 </div>
-                <button class="search-button" aria-label="Rechercher">
-                    <img src="assets/header-icon/search.svg" alt="Rechercher">
-                </button>
-                <!-- Suggestions -->
-                <div class="search-suggestions" id="search-suggestions"></div>
+
+                <!-- Trending Searches (optionnel, s'affiche sous la barre) -->
+                <div class="trending-chips-container" id="trending-chips-container" style="display: none;">
+                    <div class="trending-chips" id="trending-chips"></div>
+                </div>
             </div>
 
             <!-- Nav Desktop -->
@@ -81,49 +179,43 @@
                         <div class="dropdown lang-dropdown">
                             <button onclick="changeLang('fr')">Français</button>
                             <button onclick="changeLang('en')">Anglais</button>
-                            <button onclick="changeLang('es')">Español</button>
                         </div>
                     </li>
                     <li class="nav-item help">
                         <img src="assets/header-icon/question.svg" alt="Aide"> Aide
                         <div class="dropdown help-dropdown">
-                            <a href="/help">Centre d’aide</a>
+                            <a href="/help">Centre d'aide</a>
                             <a href="/faq">FAQ</a>
-                            <a href="/contact">Nous contacter</a>
-                            <button onclick="openChat()">Chat en direct</button>
+                            <button onclick="openChat()">Chat</button>
                         </div>
                     </li>
                     <li class="nav-item account">
                         <img src="assets/header-icon/user.svg" alt="Compte"> Compte
-                        <div class="dropdown account-dropdown">
-                            <!-- Contenu dynamique via JS -->
-                        </div>
+                        <div class="dropdown account-dropdown"></div>
                     </li>
                     <li class="nav-item cart">
                         <img src="assets/header-icon/shopping-cart.svg" alt="Panier">
                         <span class="cart-badge" id="cart-count">0</span>
-                        <div class="dropdown cart-dropdown">
-                            <!-- Mini-panier dynamique -->
-                        </div>
+                        <div class="dropdown cart-dropdown"></div>
                     </li>
                 </ul>
             </nav>
 
-            <!-- Nav Mobile/Tablette -->
+            <!-- Nav Mobile -->
             <nav class="nav mobile-nav">
                 <img src="assets/header-icon/position.svg" alt="Position" class="position-icon-mobile" onclick="toggleDropdown('position-dropdown')">
-                    <div class="cart-icon-mobile" onclick="openCart()">
-                        <img src="assets/header-icon/shopping-cart.svg" alt="Panier">
-                        <span class="cart-badge" id="cart-count-mobile">0</span>
-                    </div>
+                <div class="cart-icon-mobile" onclick="openCart()">
+                    <img src="assets/header-icon/shopping-cart.svg" alt="Panier">
+                    <span class="cart-badge" id="cart-count-mobile">0</span>
+                </div>
                 <img src="assets/header-icon/menu.svg" alt="Menu" class="burger" onclick="toggleMenu()">
+                
                 <!-- Menu latéral -->
                 <div class="side-menu" id="side-menu">
                     <button class="close-menu" onclick="toggleMenu()">×</button>
                     <ul>
                         <li><a href="/">Accueil</a></li>
                         <li><a href="/categories">Catégories</a></li>
-                        <li><a href="/trends">Tendances actuelles</a></li>
                         <li class="language-mobile">Langue: Français</li>
                         <li><a href="/help">Aide</a></li>
                         <li><a href="/account">Compte</a></li>
@@ -133,11 +225,42 @@
         </div>
     </header>
 
+    <!-- Voice Status Modal -->
+    <div class="voice-status" id="voice-status" style="display: none;">
+        <div class="voice-animation">
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+            <div class="voice-wave"></div>
+        </div>
+        <p class="voice-text" id="voice-text">Parlez maintenant...</p>
+        <button class="voice-cancel" id="voice-cancel">Annuler</button>
+    </div>
+
+    <!-- ARIA Live Region -->
+    <div id="search-announcer" role="status" aria-live="polite" aria-atomic="true" class="visually-hidden"></div>
+
     <!-- Promo Bar -->
-    <section class="promo-bar" id="promo-bar">
-        <p class="promo-text">-15% sur les cosmetique cette semaine | Livraisons gratuite dès 30 000 FCFA</p>
-        <a href="/promotions" class="promo-link">En savoir plus</a>
-        <button class="close-promo" onclick="closePromoBar()">×</button>
+    <section class="promo-bar" id="promo-bar" role="banner" aria-label="Bannière promotionnelle">
+    
+        <!-- Container centralisé (text + link) -->
+        <div class="promo-content">
+            <!-- Texte de la promo -->
+            <p class="promo-text" id="promo-text">
+                -15% sur les cosmétiques cette semaine | Livraison gratuite dès 30 000 FCFA
+            </p>
+            
+            <!-- Lien "En savoir plus" -->
+            <a href="/promotions" class="promo-link" aria-label="En savoir plus sur la promotion">
+                En savoir plus
+            </a>
+        </div>
+
+        <!-- Bouton de fermeture -->
+        <button class="close-promo" 
+                onclick="closePromoBar()" 
+                aria-label="Fermer la bannière promotionnelle">
+            ×
+        </button>
     </section>
 
     <main>
@@ -1255,7 +1378,10 @@
         
     </footer>
 
+    <script src="dropdown-manager.js"></script>
     <script src="script.js"></script>
+    <script src="search-script.js"></script>
+    <script src="promo-bar.js"></script>
     <script src="services.js"></script>
     <script src="why-choose.js"></script>
     <script src="js/testimonials.js"></script>

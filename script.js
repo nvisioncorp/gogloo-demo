@@ -17,19 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gestion du dropdown de position
     document.querySelector('.position-zone')?.addEventListener('click', (e) => {
         e.stopPropagation();
-        togglePositionDropdown();
+        if (window.DropdownManager) {
+            window.DropdownManager.toggle('position-dropdown');
+        }
     });
-
-    function togglePositionDropdown() {
-        // Fermer les autres dropdowns
-        document.querySelectorAll('.nav-item .dropdown.show').forEach(d => {
-            d.classList.remove('show');
-        });
-        const optionsList = document.querySelector('.options-list.show');
-        if (optionsList) optionsList.classList.remove('show');
-        
-        positionDropdown.classList.toggle('show');
-    }
 
     // Fermer le dropdown de position si clic en dehors (géré par l'événement global document.click ci-dessus)
 
@@ -154,24 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
     // RECHERCHE
     // ============================================
-    const searchInput = document.getElementById('search-input');
-    const searchButton = document.querySelector('.search-button');
-    let debounceTimer;
 
-    if (searchInput) {
-        searchInput.addEventListener('input', () => {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                console.log('Suggestions pour:', searchInput.value);
-            }, 300);
-        });
-    }
-
-    if (searchButton) {
-        searchButton.addEventListener('click', () => {
-            console.log('Recherche déclenchée:', searchInput?.value);
-        });
-    }
 
     // ============================================
     // MENU MOBILE
@@ -212,41 +186,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // NAV ITEMS DROPDOWNS
     // ============================================
     const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => {
+    navItems.forEach((item, index) => {
         item.addEventListener('click', (e) => {
             e.stopPropagation();
             const dropdown = item.querySelector('.dropdown');
-            if (dropdown) {
-                // Fermer les autres dropdowns
-                document.querySelectorAll('.nav-item .dropdown.show').forEach(d => {
-                    if (d !== dropdown) d.classList.remove('show');
-                });
-                dropdown.classList.toggle('show');
+            if (dropdown && window.DropdownManager) {
+                const dropdownId = `nav-item-${index}`;
+                window.DropdownManager.toggle(dropdownId);
             }
         });
     });
 
-    // Fermer tous les dropdowns au clic extérieur
-    document.addEventListener('click', (e) => {
-        // Fermer dropdowns nav
-        if (!e.target.closest('.nav-item')) {
-            document.querySelectorAll('.nav-item .dropdown.show').forEach(d => {
-                d.classList.remove('show');
-            });
-        }
-        
-        // Fermer custom-select
-        if (!e.target.closest('.custom-select')) {
-            const optionsList = document.querySelector('.options-list.show');
-            if (optionsList) optionsList.classList.remove('show');
-        }
-        
-        // Fermer position dropdown
-        if (!e.target.closest('.position-zone') && !e.target.closest('.position-dropdown')) {
-            const posDropdown = document.getElementById('position-dropdown');
-            if (posDropdown) posDropdown.classList.remove('show');
-        }
-    });
+
 
     window.openChat = () => {
         console.log('Chat ouvert');
@@ -263,15 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (customSelect && selectedOption && optionsList) {
         customSelect.addEventListener('click', (e) => {
             e.stopPropagation();
-            
-            // Fermer les autres dropdowns
-            document.querySelectorAll('.nav-item .dropdown.show').forEach(d => {
-                d.classList.remove('show');
-            });
-            const posDropdown = document.getElementById('position-dropdown');
-            if (posDropdown) posDropdown.classList.remove('show');
-            
-            optionsList.classList.toggle('show');
+            if (window.DropdownManager) {
+                window.DropdownManager.toggle('custom-select');
+            }
         });
 
         if (options) {
@@ -281,52 +226,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const span = selectedOption.querySelector('span');
                     if (span) span.textContent = option.textContent;
                     selectedOption.dataset.value = option.dataset.value;
-                    optionsList.classList.remove('show');
+                    
+                    // Fermer le dropdown après sélection
+                    if (window.DropdownManager) {
+                        window.DropdownManager.close('custom-select');
+                    }
+                    
                     console.log('Catégorie sélectionnée:', selectedOption.dataset.value);
                 });
             });
         }
-    }
-
-    // ============================================
-    // PROMO BAR
-    // ============================================
-    const promoBar = document.getElementById('promo-bar');
-    if (promoBar) {
-        if (localStorage.getItem('promoClosed') === 'true') {
-            promoBar.style.display = 'none';
-        } else {
-            const promoEndDate = new Date('2025-10-12');
-            if (new Date() > promoEndDate) {
-                promoBar.style.display = 'none';
-            }
-        }
-    }
-
-    window.closePromoBar = () => {
-        if (promoBar) {
-            promoBar.style.display = 'none';
-            localStorage.setItem('promoClosed', 'true');
-        }
-    };
-
-    const promos = [
-        "-15% sur les cosmetique cette semaine | Livraisons gratuite dès 30 000 FCFA",
-        "Autre promo exemple | Détails ici"
-    ];
-    let currentPromo = 0;
-    const promoText = document.querySelector('.promo-text');
-    
-    if (promoText && promos.length > 1) {
-        setInterval(() => {
-            currentPromo = (currentPromo + 1) % promos.length;
-            promoText.textContent = promos[promos.length - 1 - currentPromo];
-        }, 5000);
-    }
-
-    window.trackEvent = (event) => {
-        console.log(`Event tracked: ${event}`);
-    };
+    }    
 
     // ============================================
     // CTA BUTTON
