@@ -951,133 +951,191 @@
             </div>
         </section>
 
-        <!-- Ils parlent de nous -->
-        <section class="testimonials" role="region" aria-label="Témoignages clients Gogloo">
+        <!-- ============================================
+            SECTION ILS PARLENT DE NOUS - NOUVEAU DESIGN
+            ============================================ -->
+
+        <section class="testimonials-section">
             <div class="testimonials-container">
                 <!-- Titre principal -->
-                <h2 class="testimonials-title">Ils parlent de nous</h2>
+                <h2 class="testimonials-title">Ils Parlent De Nous</h2>
 
-                <!-- Conteneur du carrousel -->
-                <div class="testimonials-carousel" id="testimonials-carousel">
-                    <!-- Wrapper des slides -->
-                    <div class="testimonials-wrapper" id="testimonials-wrapper">
+                <!-- Carrousel wrapper -->
+                <div class="testimonials-carousel-wrapper" id="testimonials-carousel-wrapper">
+                    
+                    <!-- Slides container -->
+                    <div class="testimonials-slides" id="testimonials-slides">
                         
-                        <!-- Témoignage 1 -->
-                        <article class="testimonial-slide active" 
-                                role="group" 
-                                aria-roledescription="slide" 
-                                aria-label="Témoignage de Aminata D."
-                                data-testimonial-index="0">
-                            <div class="testimonial-content">
-                                <!-- Photo client -->
-                                <div class="testimonial-avatar-wrapper">
-                                    <img src="assets/testimonials/testimonial-avatar.jpg" 
-                                        alt="Photo de Aminata D." 
+                        <!-- Slide 1 -->
+                        <div class="testimonial-slide active" data-slide-index="0">
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar1.jpg" 
+                                        alt="Sophie K." 
                                         class="testimonial-avatar"
                                         loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Sophie K. - Genève, Suisse</h3>
+                                        <p class="testimonial-role">Particulier</p>
+                                    </div>
                                 </div>
-
-                                <!-- Citation -->
-                                <blockquote class="testimonial-quote">
-                                    <p>« J'ai utilisé Gogloo pour commander des articles ménagers et observer un service de peinture — tout s'est passé sans stress. Le site est rapide, les prestataires pro et j'ai reçu ma commande le jour même. Enfin une plateforme fiable ici ! »</p>
-                                </blockquote>
-
-                                <!-- Nom et ville -->
-                                <cite class="testimonial-author">— Aminata D., Cotonou</cite>
+                                <p class="testimonial-text">
+                                    Grâce à Gogloo, j'ai pu obtenir une simulation claire et rapide de mon financement. Le processus est fluide, transparent et très professionnel."
+                                </p>
                             </div>
-                        </article>
-
-                        <!-- Témoignage 2 -->
-                        <article class="testimonial-slide" 
-                                role="group" 
-                                aria-roledescription="slide" 
-                                aria-label="Témoignage de Koffi M."
-                                data-testimonial-index="1">
-                            <div class="testimonial-content">
-                                <div class="testimonial-avatar-wrapper">
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
                                     <img src="assets/testimonials/testimonial-avatar2.jpg" 
-                                        alt="Photo de Koffi M." 
+                                        alt="Javier R." 
                                         class="testimonial-avatar"
                                         loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Javier R. - Madrid, Espagne</h3>
+                                        <p class="testimonial-role">Entrepreneur</p>
+                                    </div>
                                 </div>
-
-                                <blockquote class="testimonial-quote">
-                                    <p>« Excellent service ! J'ai trouvé des pièces auto introuvables ailleurs. La livraison était ultra rapide et le SAV très réactif. Je recommande Gogloo à tous mes amis. »</p>
-                                </blockquote>
-
-                                <cite class="testimonial-author">— Koffi M., Porto-Novo</cite>
+                                <p class="testimonial-text">
+                                    Un service innovant et simple à utiliser. J'ai particulièrement apprécié la clarté des informations et la rapidité de réponse.
+                                </p>
                             </div>
-                        </article>
+                        </div>
 
-                        <!-- Témoignage 3 -->
-                        <article class="testimonial-slide" 
-                                role="group" 
-                                aria-roledescription="slide" 
-                                aria-label="Témoignage de Fatoumata S."
-                                data-testimonial-index="2">
-                            <div class="testimonial-content">
-                                <div class="testimonial-avatar-wrapper">
+                        <!-- Slide 2 -->
+                        <div class="testimonial-slide" data-slide-index="1">
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
                                     <img src="assets/testimonials/testimonial-avatar3.jpg" 
-                                        alt="Photo de Fatoumata S." 
+                                        alt="Marie L." 
                                         class="testimonial-avatar"
                                         loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Marie L. - Paris, France</h3>
+                                        <p class="testimonial-role">Investisseur</p>
+                                    </div>
                                 </div>
-
-                                <blockquote class="testimonial-quote">
-                                    <p>« Une révolution pour le shopping en ligne au Bénin ! Interface claire, paiement mobile sécurisé, et une vraie gestion de stock. Plus besoin de chercher pendant des heures. Bravo Gogloo ! »</p>
-                                </blockquote>
-
-                                <cite class="testimonial-author">— Fatoumata S., Parakou</cite>
+                                <p class="testimonial-text">
+                                    Une plateforme intuitive qui m'a permis de comparer plusieurs options de financement rapidement. Le support client est excellent.
+                                </p>
                             </div>
-                        </article>
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar4.jpg" 
+                                        alt="Thomas B." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Thomas B. - Bruxelles, Belgique</h3>
+                                        <p class="testimonial-role">Consultant</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    J'ai été impressionné par la simplicité du processus. Tout est digital, sécurisé et rapide. Je recommande vivement!
+                                </p>
+                            </div>
+                        </div>
 
-                    </div><!-- Fin testimonials-wrapper -->
+                        <!-- Slide 3 -->
+                        <div class="testimonial-slide" data-slide-index="2">
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar5.jpg" 
+                                        alt="Laura M." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Laura M. - Rome, Italie</h3>
+                                        <p class="testimonial-role">Chef d'entreprise</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    Un accompagnement personnalisé et des solutions adaptées à mes besoins. L'équipe est réactive et professionnelle.
+                                </p>
+                            </div>
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar6.jpg" 
+                                        alt="David P." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">David P. - Amsterdam, Pays-Bas</h3>
+                                        <p class="testimonial-role">Freelance</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    Excellent service! La transparence des tarifs et la facilité d'utilisation font toute la différence. Très satisfait.
+                                </p>
+                            </div>
+                        </div>
 
-                    <!-- Navigation Dots (Pagination) -->
-                    <div class="testimonials-dots" role="tablist" aria-label="Navigation des témoignages">
+                        <!-- Slide 4 -->
+                        <div class="testimonial-slide" data-slide-index="3">
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar7.jpg" 
+                                        alt="Emma S." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Emma S. - Londres, Royaume-Uni</h3>
+                                        <p class="testimonial-role">Architecte</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    Une expérience utilisateur remarquable. Le processus est fluide du début à la fin. Je recommande sans hésitation.
+                                </p>
+                            </div>
+                            
+                            <div class="testimonial-card">
+                                <div class="testimonial-header">
+                                    <img src="assets/testimonials/testimonial-avatar8.jpg" 
+                                        alt="Lucas D." 
+                                        class="testimonial-avatar"
+                                        loading="lazy">
+                                    <div class="testimonial-info">
+                                        <h3 class="testimonial-name">Lucas D. - Lyon, France</h3>
+                                        <p class="testimonial-role">Startupeur</p>
+                                    </div>
+                                </div>
+                                <p class="testimonial-text">
+                                    Gogloo m'a aidé à concrétiser mon projet. Le service est moderne, efficace et les conseillers sont à l'écoute.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div><!-- Fin testimonials-slides -->
+
+                    <!-- Navigation Dots -->
+                    <div class="testimonials-pagination" id="testimonials-pagination">
                         <button class="testimonial-dot active" 
-                                role="tab"
-                                aria-label="Voir le témoignage 1"
-                                aria-selected="true"
-                                data-dot-index="0"
-                                tabindex="0"></button>
-                        
+                                data-slide="0" 
+                                aria-label="Voir le groupe de témoignages 1"
+                                aria-current="true"></button>
                         <button class="testimonial-dot" 
-                                role="tab"
-                                aria-label="Voir le témoignage 2"
-                                aria-selected="false"
-                                data-dot-index="1"
-                                tabindex="-1"></button>
-                        
+                                data-slide="1" 
+                                aria-label="Voir le groupe de témoignages 2"></button>
                         <button class="testimonial-dot" 
-                                role="tab"
-                                aria-label="Voir le témoignage 3"
-                                aria-selected="false"
-                                data-dot-index="2"
-                                tabindex="-1"></button>
+                                data-slide="2" 
+                                aria-label="Voir le groupe de témoignages 3"></button>
+                        <button class="testimonial-dot" 
+                                data-slide="3" 
+                                aria-label="Voir le groupe de témoignages 4"></button>
                     </div>
 
-                    <!-- Boutons de navigation (optionnels, cachés sur mobile/tablette) -->
-                    <button class="testimonial-nav testimonial-nav-prev" 
-                            aria-label="Témoignage précédent"
-                            aria-controls="testimonials-carousel">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="15 18 9 12 15 6"></polyline>
-                        </svg>
-                    </button>
+                </div><!-- Fin carousel-wrapper -->
 
-                    <button class="testimonial-nav testimonial-nav-next" 
-                            aria-label="Témoignage suivant"
-                            aria-controls="testimonials-carousel">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polyline points="9 18 15 12 9 6"></polyline>
-                        </svg>
-                    </button>
-
-                </div><!-- Fin testimonials-carousel -->
-
-            </div><!-- Fin testimonials-container -->
+            </div><!-- Fin container -->
         </section>
+
+        <!-- ARIA Live Region (accessibilité) -->
+        <div id="testimonials-announcer" 
+            role="status" 
+            aria-live="polite" 
+            aria-atomic="true" 
+            class="visually-hidden"></div>
 
         <!-- Newsletter -->
         <!-- ============================================
@@ -1384,7 +1442,7 @@
     <script src="promo-bar.js"></script>
     <script src="services.js"></script>
     <script src="why-choose.js"></script>
-    <script src="js/testimonials.js"></script>
+    <script src="testimonials.js"></script>
     <script src="newsletter.js"></script>
     <script src="footer.js"></script>
 </body>
